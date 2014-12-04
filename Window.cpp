@@ -10,14 +10,24 @@
 
 Window::Window(unsigned width, unsigned height, char* name) {
     
+    this->width = width;
+    this->height = height;
+    this->name = name;
     
 }
 
-GLFWwindow* Window::CreateWindow() {
+GLFWwindow* Window::CreateOpenGLWindow() {
     
     GLFWwindow* window;
     
-    //window = glfwCreateWindow(width, height, name, NULL, NULL);
+    window = glfwCreateWindow(width, height, name, NULL, NULL);
+    
+    if (!window) {
+        glfwTerminate();
+    }
+    
+    // make the window's context current
+    glfwMakeContextCurrent(window);
     
     return window;
 }

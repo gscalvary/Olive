@@ -23,16 +23,16 @@ public:
     // window is full screen or not and a boolean representing if the window
     // may be resized create a window object and return a pointer to it.
     // INVARIANTS: width and height > 0
-    // Example: Window* mainWindow = Window(800, 600, windowName, false, false, false)
+    // Example: Window* mainWindow = Window(800, 600, windowName);
     // Strategy: Domain Knowledge
     Window(unsigned width, unsigned height, char* name);
     
     //  -> GLFWWindow*
     // Via GLFW create an OpenGL context window using the Window object
     // parameters.
-    // Example: GLFWwindow* mainWindow = CreateWindow()
+    // Example: GLFWwindow* mainWindow = CreateWindow();
     // Strategy: Function Composition
-    GLFWwindow* CreateWindow();
+    GLFWwindow* CreateOpenGLWindow();
     
 private:
     
