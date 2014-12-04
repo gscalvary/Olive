@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "The world failed to allocate!" << std::endl;
         return -1;
     }
-    
+
     // initialize the world
     if (theWorld->initialize() < 0) {
         std::cout << "The world failed to initialize!" << std::endl;

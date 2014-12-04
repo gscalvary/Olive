@@ -11,32 +11,31 @@
 
 #include <stdio.h>
 #include <GLFW/glfw3.h>
+#include <string>
 
 #endif /* defined(__Olive__Window__) */
 
 class Window {
 public:
     
-    // unsigned, unsigned, char*, bool, bool, bool -> Window*
-    // Given width and height integers, a name string, a boolean representing
-    // whether antiAliasing is on or off, a boolean representing whether the
-    // window is full screen or not and a boolean representing if the window
-    // may be resized create a window object and return a pointer to it.
+    // unsigned, unsigned -> Window*
+    // Given width and height integers create a window object and return a
+    // pointer to it.
     // INVARIANTS: width and height > 0
-    // Example: Window* mainWindow = Window(800, 600, windowName);
+    // Example: Window* mainWindow = Window(800, 600);
     // Strategy: Domain Knowledge
-    Window(unsigned width, unsigned height, char* name);
+    Window(unsigned width, unsigned height);
     
-    //  -> GLFWWindow*
-    // Via GLFW create an OpenGL context window using the Window object
+    // EFFECT: Via GLFW create an OpenGL context window using the Window object
     // parameters.
-    // Example: GLFWwindow* mainWindow = CreateWindow();
+    // Example: mainWindow->CreateWindow();
     // Strategy: Function Composition
-    GLFWwindow* CreateOpenGLWindow();
+    void CreateOpenGLWindow();
     
 private:
     
     unsigned width;
     unsigned height;
-    char* name;
+    GLFWwindow* window;
+    
 };

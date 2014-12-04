@@ -19,10 +19,14 @@ int World::initialize() {
     if (!glfwInit()) {
         return -1;
     }
+
+    // create a main window object
+    Window* mainWindow = new Window(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
     
-    Window* mainWindow = new Window(MAIN_WINDOW_WIDTH,
-                                    MAIN_WINDOW_HEIGHT,
-                                    'Olive 3D Game Engine');
+    // create an OpenGL context for the main window
+    mainWindow->CreateOpenGLWindow();
+    // make the main window the current context
+    glfwMakeContextCurrent(mainWindow->getGLFWPointer());
     
     return 0;
 }
