@@ -26,7 +26,7 @@ int World::initialize() {
     // create an OpenGL context for the main window
     mainWindow->CreateOpenGLWindow();
     // make the main window the current context
-    glfwMakeContextCurrent(mainWindow->getGLFWPointer());
+    glfwMakeContextCurrent(mainWindow->getWindowGLFWPointer());
     
     return 0;
 }

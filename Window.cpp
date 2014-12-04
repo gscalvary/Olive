@@ -12,7 +12,7 @@ Window::Window(unsigned width, unsigned height) {
     
     this->width = width;
     this->height = height;
-    
+    window = NULL;
 }
 
 void Window::CreateOpenGLWindow() {
@@ -22,4 +22,19 @@ void Window::CreateOpenGLWindow() {
     if (!window) {
         glfwTerminate();
     }
+}
+
+unsigned Window::getWindowWidth() {
+    
+    return width;
+}
+
+unsigned Window::getWindowHeight() {
+    
+    return height;
+}
+
+GLFWwindow* Window::getWindowGLFWPointer() {
+    
+    return window;
 }

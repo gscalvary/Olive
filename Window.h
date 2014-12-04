@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <GLFW/glfw3.h>
-#include <string>
 
 #endif /* defined(__Olive__Window__) */
 
@@ -31,6 +30,26 @@ public:
     // Example: mainWindow->CreateWindow();
     // Strategy: Function Composition
     void CreateOpenGLWindow();
+    
+    //  -> unsigned
+    // Return the width of the window.
+    // INVARIANT: width > 0
+    // Example: getWindowWidth();
+    // Strategy: Domain Knowledge
+    unsigned getWindowWidth();
+    
+    //  -> unsigned
+    // Return the height of the window.
+    // INVARIANT: height > 0
+    // Example: getWindowHeight();
+    // Strategy: Domain Knowledge
+    unsigned getWindowHeight();
+    
+    //  -> GLFWwindow*
+    // Return the GLFWwindow pointer for this Window.
+    // Example: getWindowGLFWPointer();
+    // Strategy: Domain Knowledge
+    GLFWwindow* getWindowGLFWPointer();
     
 private:
     
