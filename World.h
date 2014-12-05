@@ -9,15 +9,13 @@
 #ifndef __Olive__World__
 #define __Olive__World__
 
+#include <iostream>
 #include <stdio.h>
 #include <GLFW/glfw3.h>
+#include "Time.h"
 #include "Window.h"
 
 #endif /* defined(__Olive__World__) */
-
-#define MAIN_WINDOW_WIDTH 800
-#define MAIN_WINDOW_HEIGHT 600
-#define GLFW_SWAP_INTERVAL 1
 
 class World {
 public:
@@ -54,6 +52,12 @@ public:
     int shutdownWorld();
     
 private:
+
+    //  -> void
+    // Handle input to the world.
+    // Example: inputForWorld();
+    // Strategy: Function Composition
+    void inputForWorld();
     
     //  -> void
     // Render the game world.
@@ -67,6 +71,17 @@ private:
     // Strategy: Domain Knowledge
     void stopWorld();
     
+    //  -> void
+    // Update the world.
+    // Example: updateWorld();
+    // Strategy: Function Composition
+    void updateWorld();
+    
     Window* mainWindow;
+    Time* gameClock;
     bool isWorldRunning;
+    const unsigned mainWindowWidth = 800;
+    const unsigned mainWindowHeight = 600;
+    const unsigned swapInterval = 1;
+    const float frameCap = 100.0;
 };
