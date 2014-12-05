@@ -8,20 +8,36 @@
 
 #include "Window.h"
 
-Window::Window(unsigned width, unsigned height) {
+Window::Window(unsigned width, unsigned height, char* title) {
     
     this->width = width;
     this->height = height;
+    this->title = title;
     window = NULL;
 }
 
-void Window::CreateOpenGLWindow() {
+void Window::createOpenGLWindow() {
     
-    window = glfwCreateWindow(width, height, "Olive 3D Game Engine", NULL, NULL);
+    window = glfwCreateWindow(width, height, title, NULL, NULL);
     
     if (!window) {
         glfwTerminate();
     }
+}
+
+void Window::disposeOpenGLWindow() {
+    
+    glfwDestroyWindow(window);
+}
+
+void Window::renderWindow() {
+    
+    glfwSwapBuffers(window);
+}
+
+bool Window::isWindowCloseRequested() {
+    
+    return glfwWindowShouldClose(window);
 }
 
 unsigned Window::getWindowWidth() {
@@ -32,6 +48,11 @@ unsigned Window::getWindowWidth() {
 unsigned Window::getWindowHeight() {
     
     return height;
+}
+
+char* Window::getWindowTitle() {
+    
+    return title;
 }
 
 GLFWwindow* Window::getWindowGLFWPointer() {

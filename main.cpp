@@ -20,8 +20,20 @@ int main(int argc, const char * argv[]) {
     }
 
     // initialize the world
-    if (theWorld->initialize() < 0) {
+    if (theWorld->initializeWorld() < 0) {
         std::cout << "The world failed to initialize!" << std::endl;
+        return -1;
+    }
+    
+    // run the world
+    if (theWorld->runWorld() < 0) {
+        std::cout << "The world has stopped running!" << std::endl;
+        return -1;
+    }
+    
+    // clean-up the world
+    if (theWorld->shutdownWorld() < 0) {
+        std::cout << "The world failed to shut-down!" << std::endl;
         return -1;
     }
     
