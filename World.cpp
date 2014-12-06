@@ -8,11 +8,24 @@
 
 #include "World.h"
 
+World* World::s_World = NULL;
+
 World::World() {
     
     mainWindow = NULL;
     gameClock = NULL;
+    handleInput = NULL;
     isWorldRunning = false;
+}
+
+World& World::getInstance()
+{
+    // allocate the World if not already done
+    if (s_World == NULL) {
+        s_World = new World();
+    }
+    
+    return *s_World;
 }
 
 int World::initializeWorld() {
@@ -32,6 +45,14 @@ int World::initializeWorld() {
     glfwMakeContextCurrent(mainWindow->getWindowGLFWPointer());
     // set GLFW to only swap buffers when an update has been made
     glfwSwapInterval(swapInterval);
+    
+    // set function callback for keyboard input
+    glfwSetKeyCallback(mainWindow->getWindowGLFWPointer(), keyboardInput);
+    // set function callback for mousebutton input
+    glfwSetMouseButtonCallback(mainWindow->getWindowGLFWPointer(),
+                               mouseButtonInput);
+    // set function callback for mouse motion
+    glfwSetCursorPosCallback(mainWindow->getWindowGLFWPointer(), mouseMotion);
     
     // create a game clock
     gameClock = new Time();

@@ -12,10 +12,15 @@
 #include <iostream>
 #include <stdio.h>
 #include <GLFW/glfw3.h>
+#include "Input.h"
+#include "InputManager.h"
 #include "Time.h"
 #include "Window.h"
 
 #endif /* defined(__Olive__World__) */
+
+// singleton shortcut
+#define theWorld World::getInstance()
 
 class World {
 public:
@@ -26,6 +31,13 @@ public:
     // Example: World* myWorld = World();
     // Strategy: Domain Knowledge
     World();
+    
+    //  -> World&
+    // Used to access the singleton instance of this class, by using theWorld
+    // a macro will call this function which returns the address of this object.
+    // Example: theWorld.someWorldMethod
+    // Strategy: Domain Knowledge
+    static World& getInstance();
     
     //  -> int
     // Initialize the game engine:
@@ -51,6 +63,10 @@ public:
     // Strategy: Function Composition
     int shutdownWorld();
     
+protected:
+    
+    static World* s_World;
+
 private:
 
     //  -> void
@@ -79,6 +95,7 @@ private:
     
     Window* mainWindow;
     Time* gameClock;
+    InputManager* handleInput;
     bool isWorldRunning;
     const unsigned mainWindowWidth = 800;
     const unsigned mainWindowHeight = 600;

@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/5/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__Time__
 #define __Olive__Time__
 
