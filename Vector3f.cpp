@@ -63,7 +63,7 @@ std::string Vector3f::reportVector3f() {
 
 float Vector3f::lengthVector3f() {
     
-    return sqrtf(x * x + y * y + z * z);
+    return (float)sqrtf(x * x + y * y + z * z);
 }
 
 float Vector3f::dotProductVector3f(Vector3f otherVector) {

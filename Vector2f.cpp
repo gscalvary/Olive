@@ -51,7 +51,7 @@ std::string Vector2f::reportVector2f() {
 
 float Vector2f::lengthVector2f() {
     
-    return sqrtf(x * x + y * y);
+    return (float)sqrtf(x * x + y * y);
 }
 
 float Vector2f::dotProductVector2f(Vector2f otherVector) {
