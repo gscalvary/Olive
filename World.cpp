@@ -14,12 +14,11 @@ World::World() {
     
     mainWindow = NULL;
     gameClock = NULL;
-    handleInput = NULL;
     isWorldRunning = false;
 }
 
-World& World::getInstance()
-{
+World& World::getInstance() {
+    
     // allocate the World if not already done
     if (s_World == NULL) {
         s_World = new World();
@@ -53,6 +52,9 @@ int World::initializeWorld() {
                                mouseButtonInput);
     // set function callback for mouse motion
     glfwSetCursorPosCallback(mainWindow->getWindowGLFWPointer(), mouseMotion);
+    
+    // initialize OpenGL
+    theRender.initializeGraphics();
     
     // create a game clock
     gameClock = new Time();
@@ -128,6 +130,7 @@ void World::inputForWorld() {
 
 void World::renderWorld() {
     
+    theRender.clearScreen();
     mainWindow->renderWindow();
 }
 

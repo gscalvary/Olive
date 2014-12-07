@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 #include "Input.h"
 #include "InputManager.h"
+#include "RenderManager.h"
 #include "Time.h"
 #include "Window.h"
 
@@ -42,6 +43,7 @@ public:
     //  -> int
     // Initialize the game engine:
     //  - Initialize GLFW.
+    //  - Initialize OpenGL.
     //  - Create a main window.
     // Returns 0 if successful or -1 if a failure.
     // Example: myWorld->initializeWorld();
@@ -95,7 +97,6 @@ private:
     
     Window* mainWindow;
     Time* gameClock;
-    InputManager* handleInput;
     bool isWorldRunning;
     const unsigned mainWindowWidth = 800;
     const unsigned mainWindowHeight = 600;
