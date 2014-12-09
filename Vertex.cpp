@@ -10,17 +10,21 @@
 
 Vertex::Vertex(Vector3f* pos) {
     
-    this->pos = pos;
+    this->pos.setVector3fX(pos->getVector3fX());
+    this->pos.setVector3fY(pos->getVector3fY());
+    this->pos.setVector3fZ(pos->getVector3fZ());
 }
 
 Vector3f* Vertex::getPosVertex() {
     
-    return pos;
+    return &pos;
 }
 
 void Vertex::setPosVertex(Vector3f* newPos) {
     
-    pos = newPos;
+    this->pos.setVector3fX(newPos->getVector3fX());
+    this->pos.setVector3fY(newPos->getVector3fY());
+    this->pos.setVector3fZ(newPos->getVector3fZ());
 }
 
 int Vertex::getSizeVertex() {

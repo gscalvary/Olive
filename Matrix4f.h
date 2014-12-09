@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/6/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__Matrix4f__
 #define __Olive__Matrix4f__
 

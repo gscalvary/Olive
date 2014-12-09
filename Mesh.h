@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/8/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__Mesh__
 #define __Olive__Mesh__
 
@@ -28,6 +28,7 @@ public:
     
     // vector -> void
     // Given a vector of vertex pointers process the data.
+    // INVARIANT: the vector of vertex pointers must contain at least one vertex
     // Example: addVerticesMesh(myVerticesVector)
     // Strategy: Function Composition
     void addVerticesMesh(std::vector<Vertex*> vertices);
@@ -38,10 +39,17 @@ public:
     // Strategy: Function Composition
     void drawMesh();
     
+    // unsigned -> float
+    // Given an unsigned int as an index, return the float associated with the
+    // index from the mesh buffer.
+    // INVARIANT: unsigned < numVertex * numVertexPosCoords
+    // Example: getBufferElementMesh(0);
+    // Strategy: Function Composition
+    float getBufferElementMesh(unsigned index);
+    
 private:
     
+    unsigned long numVertex;
     int numVertexPosCoords;
-    unsigned bufferIds[1];
-    unsigned vertexVboId;
     float buffer[];
 };

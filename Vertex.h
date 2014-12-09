@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/7/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__Vertex__
 #define __Olive__Vertex__
 
@@ -17,7 +17,7 @@
 class Vertex {
 public:
     
-    // Vector3f -> Vertex*
+    // Vector3f* -> Vertex*
     // Given a Vector3f* construct a Vertex object.
     // Example: Vector3f* myVector3f = new Vector3f(1.0, 1.0, 1.0);
     //          Vertex(myVector3f) builds a Vertex with pos = to the passed
@@ -46,6 +46,6 @@ public:
     
 private:
     
-    Vector3f* pos;
+    Vector3f pos;
     const int size = 3;
 };

@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/6/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__Vector3f__
 #define __Olive__Vector3f__
 

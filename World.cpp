@@ -63,8 +63,6 @@ int World::initializeWorld() {
     gameClock = new Time();
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
-    /*
-    testMesh = new Mesh();
     Vector3f* vector1 = new Vector3f(0.75f, 0.75f, 0.0f);
     Vector3f* vector2 = new Vector3f(0.75f, -0.75f, 0.0f);
     Vector3f* vector3 = new Vector3f(-0.75f, -0.75f, 0.0f);
@@ -72,8 +70,7 @@ int World::initializeWorld() {
     Vertex* vertex2 = new Vertex(vector2);
     Vertex* vertex3 = new Vertex(vector3);
     std::vector<Vertex*> vertices = {vertex1, vertex2, vertex3};
-    testMesh->addVerticesMesh(vertices);
-     */
+    testMesh.addVerticesMesh(vertices);
     
     return 0;
 }

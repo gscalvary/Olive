@@ -5,7 +5,7 @@
 //  Created by Christopher Oliver on 12/7/14.
 //
 //
-
+# pragma once
 #ifndef __Olive__RenderManager__
 #define __Olive__RenderManager__
 

@@ -111,5 +111,5 @@ private:
     const unsigned mainWindowHeight = 600;
     const unsigned swapInterval = 1;
     const float frameCap = 100.0;
-    Mesh* testMesh;
+    Mesh testMesh;
 };

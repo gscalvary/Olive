@@ -10,13 +10,14 @@
 
 Mesh::Mesh() {
 
-    bufferIds[0] = 0;
-    vertexVboId = 0;
+    numVertex = 0.0l;
+    numVertexPosCoords = 0;
 }
 
 void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
     
     if (vertices.size() > 0) {
+        numVertex = vertices.size();
         numVertexPosCoords = vertices[0]->getSizeVertex();
     } else {
         return;
@@ -32,25 +33,35 @@ void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
         buffer[i] = vertices[j]->getPosVertex()->getVector3fZ();
         i += 1;
     }
+}
+
+float Mesh::getBufferElementMesh(unsigned index) {
     
+    if (index >= numVertex * numVertexPosCoords) {
+        return 0.0f;
+    } else {
+        return buffer[index];
+    }
+}
+
+void Mesh::drawMesh() {
+    
+    GLuint vertexVboId;
     // ask OpenGL for a buffer name for our vertex buffer
-    glGenBuffers(1, bufferIds);
-    vertexVboId = bufferIds[0];
+    glGenBuffers(1, &vertexVboId);
     // bind the returned buffer name to the GL_ARRAY_BUFFER
     glBindBuffer(GL_ARRAY_BUFFER, vertexVboId);
     // buffer the data writing it to storage on the graphics card
     glBufferData(GL_ARRAY_BUFFER,
                  sizeof(float) * numVertexPosCoords,
-                 buffer,
+                 NULL,
                  GL_STATIC_DRAW);
-    // unbind the GL_ARRAY_BUFFER
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-
-void Mesh::drawMesh() {
-    
-    // bind the vertex buffer to the GL_ARRAY_BUFFER
-    //glBindBuffer(GL_ARRAY_BUFFER, vertexVboId);
+    // obtain memory pointer on GPU
+    void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+    // copy data from my array of floats
+    memcpy(ptr, buffer, sizeof(float) * numVertexPosCoords * numVertex);
+    // copying complete
+    glUnmapBuffer(GL_ARRAY_BUFFER);
     // allow the passing of array characteristics to OpenGL
     //glEnableVertexAttribArray(0);
     // specify the characteristics of the arrayed data
