@@ -29,6 +29,9 @@ World& World::getInstance() {
 
 int World::initializeWorld() {
     
+    // set function callback for GLFW errors
+    glfwSetErrorCallback(errorCallback);
+    
     // initialize the GLFW library
     if (!glfwInit()) {
         return -1;
@@ -60,6 +63,7 @@ int World::initializeWorld() {
     gameClock = new Time();
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
+    /*
     testMesh = new Mesh();
     Vector3f* vector1 = new Vector3f(0.75f, 0.75f, 0.0f);
     Vector3f* vector2 = new Vector3f(0.75f, -0.75f, 0.0f);
@@ -69,6 +73,7 @@ int World::initializeWorld() {
     Vertex* vertex3 = new Vertex(vector3);
     std::vector<Vertex*> vertices = {vertex1, vertex2, vertex3};
     testMesh->addVerticesMesh(vertices);
+     */
     
     return 0;
 }
@@ -105,7 +110,7 @@ int World::runWorld() {
             // set the delta time in the game clock
             gameClock->setDeltaTime(frameTime);
             
-            // process input for the world
+            // process input
             inputForWorld();
             
             // update the world
@@ -121,7 +126,9 @@ int World::runWorld() {
         
         // render the world
         if (isTimeToRender) {
+            
             ++frames;
+            // render
             renderWorld();
         }
         
@@ -142,9 +149,13 @@ void World::inputForWorld() {
 
 void World::renderWorld() {
     
+    // clear the screen for the next render
     theRender.clearScreen();
+    
     //TODO: REMOVE THIS TEST CODE!
-    testMesh->drawMesh();
+    //testMesh->drawMesh();
+    
+    // swap buffers
     mainWindow->renderWindow();
 }
 
@@ -167,4 +178,9 @@ int World::shutdownWorld() {
     // terminate the GLFW library
     glfwTerminate();
     return 0;
+}
+
+void World::errorCallback(int error, const char* description) {
+    
+    std::cout << description << std::endl;
 }

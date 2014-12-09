@@ -66,6 +66,13 @@ public:
     // Example: myWorld->shutdownWorld();
     // Strategy: Function Composition
     int shutdownWorld();
+
+    // int, const char* -> void
+    // A method to accept errors from GLFW if they should occur.
+    // Example: should not be called by the application, GLFW will call this
+    // method directly.
+    // Strategy: Function Composition
+    static void errorCallback(int error, const char* description);
     
 protected:
     

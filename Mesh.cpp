@@ -48,22 +48,23 @@ void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
 }
 
 void Mesh::drawMesh() {
-    /*
+    
     // bind the vertex buffer to the GL_ARRAY_BUFFER
-    glBindBuffer(GL_ARRAY_BUFFER, vertexVboId);
+    //glBindBuffer(GL_ARRAY_BUFFER, vertexVboId);
     // allow the passing of array characteristics to OpenGL
-    glEnableVertexAttribArray(0);
+    //glEnableVertexAttribArray(0);
     // specify the characteristics of the arrayed data
-    glVertexAttribPointer(0,
-                          3,            // how many data points per vertex
-                          GL_FLOAT,     // base type of data
-                          GL_FALSE,
-                          0,            // spacing between values
-                          0);           // byte offset from the front of the
+    //glVertexAttribPointer(0,
+    //                      3,            // how many data points per vertex
+    //                      GL_FLOAT,     // base type of data
+    //                      GL_FALSE,
+    //                      0,            // spacing between values
+    //                      0);           // byte offset from the front of the
                                         //  buffer
     // draw the data
-    glDrawArrays(GL_TRIANGLES, 0, numVertexPosCoords);
+    //glDrawArrays(GL_TRIANGLES, 0, numVertexPosCoords);
     // disallow the passing of array characteristics to OpenGL
-    glDisableVertexAttribArray(0);
-    */
+    //glDisableVertexAttribArray(0);
+    // unbind the GL_ARRAY_BUFFER
+    //glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
