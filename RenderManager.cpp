@@ -45,5 +45,5 @@ void RenderManager::initializeGraphics() {
     // TODO: GL DEPTH CLAMP and OpenGL 3.0
     // This is an OpenGL 3.0 feature for gamma correction which I may not yet
     // have the software for on my Mac yet.
-    // glEnable(GL_FRAMEBUFFER_SRGB);
+    //glEnable(GL_FRAMEBUFFER_SRGB);
 }

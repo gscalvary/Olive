@@ -8,17 +8,22 @@
 
 #include "Vertex.h"
 
-Vertex::Vertex(Vector3f pos) {
+Vertex::Vertex(Vector3f* pos) {
     
-    this->pos = &pos;
+    this->pos = pos;
 }
 
-Vector3f Vertex::getPosVertex() {
+Vector3f* Vertex::getPosVertex() {
     
-    return *pos;
+    return pos;
 }
 
-void Vertex::setPosVertex(Vector3f newPos) {
+void Vertex::setPosVertex(Vector3f* newPos) {
     
-    pos = &newPos;
+    pos = newPos;
+}
+
+int Vertex::getSizeVertex() {
+    
+    return size;
 }

@@ -58,6 +58,18 @@ int World::initializeWorld() {
     
     // create a game clock
     gameClock = new Time();
+    
+    // TODO: REMOVE THIS TEST FUNCTIONALITY!
+    testMesh = new Mesh();
+    Vector3f* vector1 = new Vector3f(0.75f, 0.75f, 0.0f);
+    Vector3f* vector2 = new Vector3f(0.75f, -0.75f, 0.0f);
+    Vector3f* vector3 = new Vector3f(-0.75f, -0.75f, 0.0f);
+    Vertex* vertex1 = new Vertex(vector1);
+    Vertex* vertex2 = new Vertex(vector2);
+    Vertex* vertex3 = new Vertex(vector3);
+    std::vector<Vertex*> vertices = {vertex1, vertex2, vertex3};
+    testMesh->addVerticesMesh(vertices);
+    
     return 0;
 }
 
@@ -131,6 +143,8 @@ void World::inputForWorld() {
 void World::renderWorld() {
     
     theRender.clearScreen();
+    //TODO: REMOVE THIS TEST CODE!
+    testMesh->drawMesh();
     mainWindow->renderWindow();
 }
 

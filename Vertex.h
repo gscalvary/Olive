@@ -18,26 +18,34 @@ class Vertex {
 public:
     
     // Vector3f -> Vertex*
-    // Given a Vector3f construct a Vertex object.
-    // Example: Vertex((1.0, 1.0, 1.0)) builds a Vertex with pos = to the passed
-    // in Vector3.
+    // Given a Vector3f* construct a Vertex object.
+    // Example: Vector3f* myVector3f = new Vector3f(1.0, 1.0, 1.0);
+    //          Vertex(myVector3f) builds a Vertex with pos = to the passed
+    //          in Vector3f.
     // Strategy: Domain Knowledge
-    Vertex(Vector3f pos);
+    Vertex(Vector3f* pos);
     
-    //  -> Vector3f
-    // Return the pos of the Vertex.
+    //  -> Vector3f*
+    // Return a pointer to the pos of the Vertex.
     // Example: getPosVertex() returns pos;
     // Strategy: Domain Knowledge
-    Vector3f getPosVertex();
+    Vector3f* getPosVertex();
     
-    // Vector3f -> void
-    // Sets the pos of the Vertex to the passed in Vector3f.
-    // Example: setPosVertex(Vector3f newPos) sets pos to newPos;
+    // Vector3f* -> void
+    // Sets the pointer for the pos of the Vertex to the passed in Vector3f.
+    // Example: setPosVertex(Vector3f* newPos) sets pos to newPos;
     // Strategy: Domain Knowledge
-    void setPosVertex(Vector3f newPos);
+    void setPosVertex(Vector3f* newPos);
+    
+    //  -> int
+    // Return the size of the Vertex, that is how many coordinates there are
+    // to its pos.
+    // Example: getSizeVertex() returns size;
+    // Strategy: Domain Knowledge
+    int getSizeVertex();
     
 private:
     
     Vector3f* pos;
-    const int size =3;
+    const int size = 3;
 };
