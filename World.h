@@ -11,9 +11,11 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 #include <GLFW/glfw3.h>
 #include "Input.h"
 #include "InputManager.h"
+#include "Mesh.h"
 #include "RenderManager.h"
 #include "Time.h"
 #include "Window.h"
@@ -102,4 +104,5 @@ private:
     const unsigned mainWindowHeight = 600;
     const unsigned swapInterval = 1;
     const float frameCap = 100.0;
+    Mesh* testMesh;
 };
