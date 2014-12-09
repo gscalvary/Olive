@@ -14,8 +14,8 @@ int main(int argc, const char * argv[]) {
 
     // check program options
     for (int i = 1; i < argc; ++i) {
+        // the -t option runs engine tests and returns
         if (strcmp(argv[i], "-t") == 0) {
-            std::cout << "Engine is running in test mode." << std::endl;
             theTest.runTests();
             return 0;
         }
