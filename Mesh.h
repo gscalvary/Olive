@@ -49,7 +49,7 @@ public:
     
 private:
     
-    unsigned long numVertex;
-    int numVertexPosCoords;
-    float buffer[];
+    unsigned numVertex;
+    unsigned numVertexPosCoords;
+    GLfloat buffer[];
 };

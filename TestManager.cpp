@@ -27,9 +27,13 @@ TestManager& TestManager::getInstance() {
 
 void TestManager::runTests() {
     
+    std::cout << "Engine is running in test mode." << std::endl;
+    
     runVector3fTests();
     runVertexTests();
     runMeshTests();
+    
+    std::cout << "Engine testing successfully completed." << std::endl;
 }
 
 void TestManager::runVector3fTests() {

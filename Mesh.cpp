@@ -17,7 +17,7 @@ Mesh::Mesh() {
 void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
     
     if (vertices.size() > 0) {
-        numVertex = vertices.size();
+        numVertex = (unsigned)vertices.size();
         numVertexPosCoords = vertices[0]->getSizeVertex();
     } else {
         return;
@@ -45,37 +45,12 @@ float Mesh::getBufferElementMesh(unsigned index) {
 }
 
 void Mesh::drawMesh() {
-    
-    GLuint vertexVboId;
-    // ask OpenGL for a buffer name for our vertex buffer
-    glGenBuffers(1, &vertexVboId);
-    // bind the returned buffer name to the GL_ARRAY_BUFFER
-    glBindBuffer(GL_ARRAY_BUFFER, vertexVboId);
-    // buffer the data writing it to storage on the graphics card
-    glBufferData(GL_ARRAY_BUFFER,
-                 sizeof(float) * numVertexPosCoords,
-                 NULL,
-                 GL_STATIC_DRAW);
-    // obtain memory pointer on GPU
-    void *ptr = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-    // copy data from my array of floats
-    memcpy(ptr, buffer, sizeof(float) * numVertexPosCoords * numVertex);
-    // copying complete
-    glUnmapBuffer(GL_ARRAY_BUFFER);
-    // allow the passing of array characteristics to OpenGL
-    //glEnableVertexAttribArray(0);
-    // specify the characteristics of the arrayed data
-    //glVertexAttribPointer(0,
-    //                      3,            // how many data points per vertex
-    //                      GL_FLOAT,     // base type of data
-    //                      GL_FALSE,
-    //                      0,            // spacing between values
-    //                      0);           // byte offset from the front of the
-                                        //  buffer
-    // draw the data
-    //glDrawArrays(GL_TRIANGLES, 0, numVertexPosCoords);
-    // disallow the passing of array characteristics to OpenGL
-    //glDisableVertexAttribArray(0);
-    // unbind the GL_ARRAY_BUFFER
-    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    // enable and specify a pointer to the vertex array
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(numVertexPosCoords, GL_FLOAT, 0, buffer);
+    // draw the vertices
+    glDrawArrays(GL_TRIANGLES, 0, numVertexPosCoords * numVertex);
+    // disable the pointer to the vertex array
+    glDisableClientState(GL_VERTEX_ARRAY);
 }
