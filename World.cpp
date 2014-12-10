@@ -56,11 +56,29 @@ int World::initializeWorld() {
     // set function callback for mouse motion
     glfwSetCursorPosCallback(mainWindow->getWindowGLFWPointer(), mouseMotion);
     
+    // print out OpenGL version
+    std::cout << theRender.getOpenGLVersion() << std::endl;
+    
     // initialize OpenGL
     theRender.initializeGraphics();
     
     // create a game clock
     gameClock = new Time();
+    
+    // Set up paths correctly in the .app bundle
+    CFBundleRef mainBundle = CFBundleGetMainBundle();
+    CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
+    char path[PATH_MAX];
+    if (!CFURLGetFileSystemRepresentation(resourcesURL,
+                                          TRUE,
+                                          (UInt8 *)path,
+                                          PATH_MAX)) {
+        std::cout << "ERROR: Problem setting up working directory!";
+    }
+    CFRelease(resourcesURL);
+    chdir(path);
+    chdir("..");
+    std::cout << getcwd(path, PATH_MAX) << std::endl;
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
     Vector3f vector1(0.75f, 0.75f, 0.0f);

@@ -47,3 +47,8 @@ void RenderManager::initializeGraphics() {
     // have the software for on my Mac yet.
     //glEnable(GL_FRAMEBUFFER_SRGB);
 }
+
+const unsigned char* RenderManager::getOpenGLVersion() {
+    
+    return glGetString(GL_VERSION);
+}

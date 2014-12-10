@@ -46,6 +46,13 @@ public:
     // Strategy: Function Composition
     void initializeGraphics();
     
+    //  -> char*
+    // Return a pointer to a string specifying which version of OpenGL is being
+    // run on the machine.
+    // Example: getOpenGLVersion(); returns ""
+    // Strategy: Function Composition
+    const unsigned char* getOpenGLVersion();
+    
 protected:
     
     static RenderManager* s_RenderManager;

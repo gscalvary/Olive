@@ -9,6 +9,7 @@
 #ifndef __Olive__World__
 #define __Olive__World__
 
+#import <CoreFoundation/CoreFoundation.h>
 #include <iostream>
 #include <stdio.h>
 #include <vector>
@@ -47,6 +48,8 @@ public:
     //  - Initialize GLFW.
     //  - Initialize OpenGL.
     //  - Create a main window.
+    //  - Create a game clock.
+    //  - Set-up the application directory.
     // Returns 0 if successful or -1 if a failure.
     // Example: myWorld->initializeWorld();
     // Strategy: Function Composition
