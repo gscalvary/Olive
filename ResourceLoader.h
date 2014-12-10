@@ -9,9 +9,6 @@
 #ifndef __Olive__ResourceLoader__
 #define __Olive__ResourceLoader__
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include <stdio.h>
 #include <string>
 
@@ -26,14 +23,6 @@ public:
     // Example: ResourceLoader* myResourceLoader = ResourceLoader();
     // Strategy: Domain Knowledge
     ResourceLoader();
-
-    // char* -> string
-    // Given a pointer to a filename of a text file containing a shader, returns
-    // a string containing of the entire contents of the file.
-    // INVARIANT: the shader must be in the ./res/shaders/ directory.
-    // Example: loadShader(myShaderFileName);
-    // Strategy: Domain Knowledge
-    std::string loadShader(char* fileName);
     
 private:
     

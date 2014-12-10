@@ -94,9 +94,9 @@ Vector3f Vector3f::normalizeVector3f() {
 
 Vector3f Vector3f::rotateVector3f(float angle) {
     
-    double rad = angle * piD / 180.0;
-    double cosRad = cos(rad);
-    double sinRad = sin(rad);
+    //double rad = angle * piD / 180.0;
+    //double cosRad = cos(rad);
+    //double sinRad = sin(rad);
     
     return *this;
 }

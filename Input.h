@@ -6,6 +6,8 @@
 //
 //
 # pragma once
+#include <fstream>
+#include <iostream>
 #include <stdio.h>
 #include <GLFW/glfw3.h>
 #include "InputManager.h"
@@ -46,3 +48,11 @@ void mouseButtonInput(GLFWwindow* window, int button, int action, int mods);
 // Example: Called by GLFW, should not be called in engine code directly!
 // Strategy: Function Composition
 void mouseMotion(GLFWwindow* window, double x, double y);
+
+// string& -> string
+// Given a pointer to a filename of a text file containing a shader, returns
+// a string containing of the entire contents of the file.
+// INVARIANT: the shader must be in the ./res/shaders/ directory.
+// Example: loadShader(myShaderFileName);
+// Strategy: Domain Knowledge
+static std::string loadShader(const std::string& fileName);

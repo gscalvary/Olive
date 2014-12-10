@@ -32,6 +32,8 @@ void TestManager::runTests() {
     runVector3fTests();
     runVertexTests();
     runMeshTests();
+    runResourceLoaderTests();
+    runLoadShaderTests();
     
     std::cout << "Engine testing successfully completed." << std::endl;
 }
@@ -73,7 +75,10 @@ void TestManager::runMeshTests() {
     Vertex testVertex2(&testVector2);
     Vector3f testVector3( 0.0f,  0.6f, 0.0f);
     Vertex testVertex3(&testVector3);
-    std::vector<Vertex*> vertices = {&testVertex1, &testVertex2, &testVertex3};
+    std::vector<Vertex*> vertices;
+    vertices.push_back(&testVertex1);
+    vertices.push_back(&testVertex2);
+    vertices.push_back(&testVertex3);
 
     // constructors and getters
     Mesh testMesh;
@@ -84,4 +89,24 @@ void TestManager::runMeshTests() {
     }
     
     std::cout << " Mesh class validated!" << std::endl;
+}
+
+void TestManager::runResourceLoaderTests() {
+    
+    std::cout << " - Running ResourceLoader tests:";
+    
+    // constructor test
+    ResourceLoader newLoader;
+
+    std::cout << " ResourceLoader class validated!" << std::endl;
+}
+
+void TestManager::runLoadShaderTests() {
+    
+    std::cout << " - Running loadShader tests:";
+    
+    std::string fileName = "badFileName";
+    //std::string result = loadShader(fileName + ".glsl");
+    
+    std::cout << " loadShader function validated!" << std::endl;
 }

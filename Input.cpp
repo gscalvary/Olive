@@ -43,3 +43,23 @@ void mouseMotion(GLFWwindow* window, double x, double y) {
     
     theInput.onMouseMotion(x, y);
 }
+
+static std::string loadShader(const std::string& fileName) {
+    
+    std::string line;
+    std::string result;
+    std::ifstream shaderFile;
+    
+    shaderFile.open(("./res/shaders/" + fileName).c_str());
+    
+    if (shaderFile.is_open()) {
+        while(getline(shaderFile,line)) {
+            result.append(line + "\n");
+        }
+        shaderFile.close();
+    } else {
+        std::cout << "Unable to open file" << std::endl;
+    }
+    
+    return result;
+}

@@ -87,7 +87,10 @@ int World::initializeWorld() {
     Vertex vertex1(&vector1);
     Vertex vertex2(&vector2);
     Vertex vertex3(&vector3);
-    std::vector<Vertex*> vertices = {&vertex1, &vertex2, &vertex3};
+    std::vector<Vertex*> vertices;
+    vertices.push_back(&vertex1);
+    vertices.push_back(&vertex2);
+    vertices.push_back(&vertex3);
     testMesh.addVerticesMesh(vertices);
     
     return 0;

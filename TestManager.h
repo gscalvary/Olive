@@ -12,7 +12,9 @@
 #include <assert.h>
 #include <iostream>
 #include <stdio.h>
+#include "Input.h"
 #include "Mesh.h"
+#include "ResourceLoader.h"
 #include "Vector3f.h"
 #include "Vertex.h"
 
@@ -41,26 +43,39 @@ public:
     //  -> void
     // Run class method tests.
     // Example: theTest.runTests();
-    // Function Composition
+    // Strategy: Function Composition
     void runTests();
     
     //  -> void
     // Run Vector3f class method tests.
     // Example: theTest.runVector3fTests();
-    // Function Composition
+    // Strategy: Function Composition
     void runVector3fTests();
     
     //  -> void
     // Run Vertex class method tests.
     // Example: theTest.runVertexTests();
-    // Function Composition
+    // Strategy: Function Composition
     void runVertexTests();
     
     //  -> void
     // Run Mesh class method tests.
     // Example: theTest.runMeshTests();
-    // Function Composition
+    // Strategy: Function Composition
     void runMeshTests();
+    
+    //  -> void
+    // Run ResourceLoader class method tests.
+    // Example: theTest.runResourceLoaderTests();
+    // Strategy: Function Composition
+    void runResourceLoaderTests();
+    
+    //  -> void
+    // Run static function loadShader test.
+    // Example: std::string fileName = "badFileName";
+    //          std::string result = loadShader(fileName + ".glsl");
+    // Strategy: Function Composition
+    void runLoadShaderTests();
     
 protected:
     
