@@ -10,7 +10,7 @@
 
 Mesh::Mesh() {
 
-    numVertex = 0.0l;
+    numVertex = 0;
     numVertexPosCoords = 0;
 }
 
