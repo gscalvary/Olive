@@ -26,6 +26,12 @@ public:
     // Strategy: Function Composition
     Mesh();
     
+    //  -> void
+    // Destructor method for the Mesh class.
+    // Example: ~Mesh() deletes a Mesh object.
+    // Strategy: Function Composition
+    ~Mesh();
+    
     // vector -> void
     // Given a vector of vertex pointers process the data.
     // INVARIANT: the vector of vertex pointers must contain at least one vertex
@@ -51,5 +57,5 @@ private:
     
     unsigned numVertex;
     unsigned numVertexPosCoords;
-    GLfloat buffer[];
+    GLfloat* buffer;
 };

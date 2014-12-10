@@ -12,10 +12,19 @@ Mesh::Mesh() {
 
     numVertex = 0;
     numVertexPosCoords = 0;
+    buffer = NULL;
+}
+
+Mesh::~Mesh() {
+    
+    // delete the memory allocated for the buffer
+    delete[] buffer;
+    buffer = NULL;
 }
 
 void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
     
+    // check there are vertices to add
     if (vertices.size() > 0) {
         numVertex = (unsigned)vertices.size();
         numVertexPosCoords = vertices[0]->getSizeVertex();
@@ -23,7 +32,14 @@ void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
         return;
     }
     
+    // deallocate memory for the buffer if it is allocated already
+    if (buffer != NULL) {
+        delete[] buffer;
+        buffer = NULL;
+    }
+
     // add the vertices position coordinates to the buffer
+    buffer = new GLfloat[(int)(numVertexPosCoords * numVertex)];
     int i = 0;
     for (int j = 0; j < vertices.size(); ++j) {
         buffer[i] = vertices[j]->getPosVertex()->getVector3fX();
@@ -37,7 +53,7 @@ void Mesh::addVerticesMesh(std::vector<Vertex*> vertices) {
 
 float Mesh::getBufferElementMesh(unsigned index) {
     
-    if (index >= numVertex * numVertexPosCoords) {
+    if (index >= numVertex * numVertexPosCoords || buffer == NULL) {
         return 0.0f;
     } else {
         return buffer[index];
