@@ -55,4 +55,4 @@ void mouseMotion(GLFWwindow* window, double x, double y);
 // INVARIANT: the shader must be in the ./res/shaders/ directory.
 // Example: loadShader(myShaderFileName);
 // Strategy: Domain Knowledge
-static std::string loadShader(const std::string& fileName);
+std::string loadShader(const std::string& fileName);

@@ -44,7 +44,7 @@ void mouseMotion(GLFWwindow* window, double x, double y) {
     theInput.onMouseMotion(x, y);
 }
 
-static std::string loadShader(const std::string& fileName) {
+std::string loadShader(const std::string& fileName) {
     
     std::string line;
     std::string result;

@@ -105,8 +105,8 @@ void TestManager::runLoadShaderTests() {
     
     std::cout << " - Running loadShader tests:";
     
-    std::string fileName = "badFileName";
-    //std::string result = loadShader(fileName + ".glsl");
+    std::string goodFileName = "shader";
+    std::string goodResult = loadShader(goodFileName + ".glsl");
     
     std::cout << " loadShader function validated!" << std::endl;
 }

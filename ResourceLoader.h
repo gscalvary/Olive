@@ -10,7 +10,6 @@
 #define __Olive__ResourceLoader__
 
 #include <stdio.h>
-#include <string>
 
 #endif /* defined(__Olive__ResourceLoader__) */
 
