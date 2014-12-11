@@ -9,12 +9,13 @@
 #ifndef __Olive__TestManager__
 #define __Olive__TestManager__
 
+#import <CoreFoundation/CoreFoundation.h>
 #include <assert.h>
 #include <iostream>
 #include <stdio.h>
 #include "Input.h"
 #include "Mesh.h"
-#include "ResourceLoader.h"
+#include "Shader.h"
 #include "Vector3f.h"
 #include "Vertex.h"
 
@@ -65,17 +66,17 @@ public:
     void runMeshTests();
     
     //  -> void
-    // Run ResourceLoader class method tests.
-    // Example: theTest.runResourceLoaderTests();
-    // Strategy: Function Composition
-    void runResourceLoaderTests();
-    
-    //  -> void
     // Run static function loadShader test.
     // Example: std::string fileName = "badFileName";
     //          std::string result = loadShader(fileName + ".glsl");
     // Strategy: Function Composition
     void runLoadShaderTests();
+    
+    //  -> void
+    // Run Shader class method tests.
+    // Example: theTest.runShaderTests();
+    // Strategy: Function Composition
+    void runShaderTests();
     
 protected:
     

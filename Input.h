@@ -6,6 +6,7 @@
 //
 //
 # pragma once
+#import <CoreFoundation/CoreFoundation.h>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>

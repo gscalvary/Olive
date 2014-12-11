@@ -17,6 +17,7 @@
 #include "Input.h"
 #include "InputManager.h"
 #include "Mesh.h"
+#include "Shader.h"
 #include "RenderManager.h"
 #include "Time.h"
 #include "Window.h"
@@ -114,5 +115,8 @@ private:
     const unsigned mainWindowHeight = 600;
     const unsigned swapInterval = 1;
     const float frameCap = 100.0;
+    
+    // TODO: delete this test code!
     Mesh testMesh;
+    Shader* testShader;
 };

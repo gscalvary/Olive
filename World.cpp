@@ -92,6 +92,10 @@ int World::initializeWorld() {
     vertices.push_back(&vertex2);
     vertices.push_back(&vertex3);
     testMesh.addVerticesMesh(vertices);
+    testShader = new Shader();
+    testShader->addVertexShader(loadShader("basicVertex.glsl"));
+    testShader->addFragmentShader(loadShader("basicFragment.glsl"));
+    testShader->linkShader();
     
     return 0;
 }
@@ -171,6 +175,7 @@ void World::renderWorld() {
     theRender.clearScreen();
     
     //TODO: REMOVE THIS TEST CODE!
+    testShader->bindShader();
     testMesh.drawMesh();
     
     // swap buffers

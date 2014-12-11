@@ -59,6 +59,8 @@ std::string loadShader(const std::string& fileName) {
         shaderFile.close();
     } else {
         std::cout << "Unable to open file" << std::endl;
+        char path[PATH_MAX];
+        std::cout << getcwd(path, PATH_MAX) << std::endl;
     }
     
     return result;

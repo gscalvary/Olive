@@ -32,8 +32,8 @@ void TestManager::runTests() {
     runVector3fTests();
     runVertexTests();
     runMeshTests();
-    runResourceLoaderTests();
     runLoadShaderTests();
+    runShaderTests();
     
     std::cout << "Engine testing successfully completed." << std::endl;
 }
@@ -91,22 +91,24 @@ void TestManager::runMeshTests() {
     std::cout << " Mesh class validated!" << std::endl;
 }
 
-void TestManager::runResourceLoaderTests() {
-    
-    std::cout << " - Running ResourceLoader tests:";
-    
-    // constructor test
-    ResourceLoader newLoader;
-
-    std::cout << " ResourceLoader class validated!" << std::endl;
-}
-
 void TestManager::runLoadShaderTests() {
     
     std::cout << " - Running loadShader tests:";
     
-    std::string goodFileName = "shader";
+    chdir("..");
+    std::string goodFileName = "basicVertex";
     std::string goodResult = loadShader(goodFileName + ".glsl");
     
     std::cout << " loadShader function validated!" << std::endl;
+}
+
+void TestManager::runShaderTests() {
+    
+    std::cout << " - Running Shader tests:";
+    
+    // constructor
+    // TODO: create an OpenGL context so I can run a test like this!
+    //Shader myShader;
+    
+    std::cout << " Shader class validated!" << std::endl;
 }
