@@ -57,7 +57,7 @@ int World::initializeWorld() {
     glfwSetCursorPosCallback(mainWindow->getWindowGLFWPointer(), mouseMotion);
     
     // print out OpenGL version
-    std::cout << theRender.getOpenGLVersion() << std::endl;
+    //std::cout << theRender.getOpenGLVersion() << std::endl;
     
     // initialize OpenGL
     theRender.initializeGraphics();
@@ -78,7 +78,6 @@ int World::initializeWorld() {
     CFRelease(resourcesURL);
     chdir(path);
     chdir("..");
-    std::cout << getcwd(path, PATH_MAX) << std::endl;
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
     Vector3f vector1(0.75f, 0.75f, 0.0f);

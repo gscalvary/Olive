@@ -43,7 +43,7 @@ void Matrix4f::setIdentityMatrix4f() {
     m[3][0] = 0.0;    m[3][1] = 0.0;   m[3][2] = 0.0;   m[3][3] = 1.0;
 }
 
-Matrix4f Matrix4f::multIdentityMatrix4f(Matrix4f n) {
+Matrix4f Matrix4f::multMatrix4f(Matrix4f n) {
     
     Matrix4f* res = new Matrix4f();
     

@@ -66,7 +66,7 @@ public:
     //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 1.0   m[2][3] = 0.0
     //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0)
     // Strategy: Domain Knowledge
-    Matrix4f multIdentityMatrix4f(Matrix4f n);
+    Matrix4f multMatrix4f(Matrix4f n);
     
 private:
     
