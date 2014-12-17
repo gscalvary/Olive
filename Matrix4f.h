@@ -16,6 +16,8 @@
 class Matrix4f {
 public:
     
+    float m[4][4];
+    
     //  -> Matrix4f*
     // Default constructor for a Matrix4f object.
     // Example: Matrix4f(); builds a matix with all components = 0.0.
@@ -70,5 +72,4 @@ public:
     
 private:
     
-    float m[4][4];
 };

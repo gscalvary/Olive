@@ -8,6 +8,9 @@
 
 #include "Shader.h"
 
+// initialize the uniform hash table
+std::map<std::string, GLuint> Shader::uniformMap;
+
 Shader::Shader() {
     
     program = glCreateProgram();
@@ -87,4 +90,45 @@ void Shader::linkShader() {
 void Shader::bindShader() {
     
     glUseProgram(program);
+}
+
+void Shader::addUniform(const std::string& uniformName) {
+    
+    // obtain the memory address of the uniform in our shader program object
+    GLuint uniformLocation = glGetUniformLocation(program, uniformName.c_str());
+    
+    // check for errors
+    if (uniformLocation == -1) {
+        std::cout << "Shader glGetUniformLocation failed for " << uniformName << "!" << std::endl;
+    }
+    
+    // capture the uniform name and location in a hash table for future use
+    uniformMap.insert(std::pair<std::string, GLuint>(uniformName,
+                                                     uniformLocation));
+}
+
+void Shader::setUniformi(const std::string& uniformName, int newValue) {
+    
+    glUniform1i(uniformMap.at(uniformName), newValue);
+}
+
+void Shader::setUniformf(const std::string& uniformName, float newValue) {
+    
+    glUniform1f(uniformMap.at(uniformName), newValue);
+}
+
+void Shader::setUniformVector3f(const std::string& uniformName, Vector3f* ptr) {
+    
+    glUniform3f(uniformMap.at(uniformName),
+                ptr->getVector3fX(),
+                ptr->getVector3fY(),
+                ptr->getVector3fZ());
+}
+
+void Shader::setUniformMatrix4f(const std::string& uniformName, Matrix4f* ptr) {
+    
+    glUniformMatrix4fv(uniformMap.at(uniformName),
+                       1,
+                       GL_FALSE,
+                       &(ptr->m[0][0]));
 }

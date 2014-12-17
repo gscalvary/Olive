@@ -95,6 +95,8 @@ int World::initializeWorld() {
     testShader->addVertexShader(loadShader("basicVertex.glsl"));
     testShader->addFragmentShader(loadShader("basicFragment.glsl"));
     testShader->linkShader();
+    testShader->addUniform("scale");
+    testUniform = 0.0f;
     
     return 0;
 }
@@ -175,6 +177,7 @@ void World::renderWorld() {
     
     //TODO: REMOVE THIS TEST CODE!
     testShader->bindShader();
+    testShader->setUniformf("scale", sin(testUniform));
     testMesh.drawMesh();
     
     // swap buffers
@@ -183,7 +186,8 @@ void World::renderWorld() {
 
 void World::updateWorld() {
     
-
+    //TODO: REMOVE THIS TEST CODE!
+    testUniform += gameClock->getDeltaTime();
 }
 
 void World::stopWorld() {

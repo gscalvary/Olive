@@ -22,6 +22,9 @@
 #include "Time.h"
 #include "Window.h"
 
+//TODO: remove this test code
+#include <cmath>
+
 #endif /* defined(__Olive__World__) */
 
 // singleton shortcut
@@ -119,4 +122,5 @@ private:
     // TODO: delete this test code!
     Mesh testMesh;
     Shader* testShader;
+    float testUniform;
 };
