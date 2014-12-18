@@ -43,6 +43,14 @@ void Matrix4f::setIdentityMatrix4f() {
     m[3][0] = 0.0;    m[3][1] = 0.0;   m[3][2] = 0.0;   m[3][3] = 1.0;
 }
 
+void Matrix4f::setTranslationMatrix4f(float x, float y, float z) {
+    
+    m[0][0] = 1.0;    m[0][1] = 0.0;   m[0][2] = 0.0;   m[0][3] = x;
+    m[1][0] = 0.0;    m[1][1] = 1.0;   m[1][2] = 0.0;   m[1][3] = y;
+    m[2][0] = 0.0;    m[2][1] = 0.0;   m[2][2] = 1.0;   m[2][3] = z;
+    m[3][0] = 0.0;    m[3][1] = 0.0;   m[3][2] = 0.0;   m[3][3] = 1.0;
+}
+
 Matrix4f Matrix4f::multMatrix4f(Matrix4f n) {
     
     Matrix4f* res = new Matrix4f();

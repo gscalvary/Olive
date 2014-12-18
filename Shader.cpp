@@ -129,6 +129,6 @@ void Shader::setUniformMatrix4f(const std::string& uniformName, Matrix4f* ptr) {
     
     glUniformMatrix4fv(uniformMap.at(uniformName),
                        1,
-                       GL_FALSE,
+                       GL_TRUE,
                        &(ptr->m[0][0]));
 }

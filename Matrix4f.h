@@ -50,6 +50,17 @@ public:
     // Strategy: Domain Knowledge
     void setIdentityMatrix4f();
     
+    // float, float, float -> void
+    // EFFECT: Modify the w component of the 0, 1 and 3 columns by given x, y
+    // and z floats.
+    // Example: setTranslationMatrix4f(1.0f, 2.0f, 3.0f); sets:
+    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 1.0
+    //  m[1][0] = 0.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 2.0
+    //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 1.0   m[2][3] = 3.0
+    //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0
+    // Strategy: Domain Knowledge
+    void setTranslationMatrix4f(float x, float y, float z);
+    
     // Matrix4f -> Matrix4f
     // Given a matrix multiply it by this matrix and return the result.
     // Example: myMatrix =

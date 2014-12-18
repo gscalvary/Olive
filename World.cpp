@@ -80,9 +80,9 @@ int World::initializeWorld() {
     chdir("..");
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
-    Vector3f vector1(0.75f, 0.75f, 0.0f);
-    Vector3f vector2(0.75f, -0.75f, 0.0f);
-    Vector3f vector3(-0.75f, -0.75f, 0.0f);
+    Vector3f vector1(-0.75f, 0.75f, 0.0f);
+    Vector3f vector2(0.75f, 0.75f, 0.0f);
+    Vector3f vector3(0.0f, -0.75f, 0.0f);
     Vertex vertex1(&vector1);
     Vertex vertex2(&vector2);
     Vertex vertex3(&vector3);
@@ -95,7 +95,7 @@ int World::initializeWorld() {
     testShader->addVertexShader(loadShader("basicVertex.glsl"));
     testShader->addFragmentShader(loadShader("basicFragment.glsl"));
     testShader->linkShader();
-    testShader->addUniform("scale");
+    testShader->addUniform("transform");
     testUniform = 0.0f;
     
     return 0;
@@ -177,7 +177,8 @@ void World::renderWorld() {
     
     //TODO: REMOVE THIS TEST CODE!
     testShader->bindShader();
-    testShader->setUniformf("scale", sin(testUniform));
+    testShader->setUniformMatrix4f("transform",
+                                   testTransform.getTransformationPtr());
     testMesh.drawMesh();
     
     // swap buffers
@@ -188,6 +189,7 @@ void World::updateWorld() {
     
     //TODO: REMOVE THIS TEST CODE!
     testUniform += gameClock->getDeltaTime();
+    testTransform.setTranslation(sin(testUniform), 0.0f, 0.0f);
 }
 
 void World::stopWorld() {

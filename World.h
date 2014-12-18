@@ -20,6 +20,7 @@
 #include "Shader.h"
 #include "RenderManager.h"
 #include "Time.h"
+#include "Transform.h"
 #include "Window.h"
 
 //TODO: remove this test code
@@ -122,5 +123,6 @@ private:
     // TODO: delete this test code!
     Mesh testMesh;
     Shader* testShader;
+    Transform testTransform;
     float testUniform;
 };
