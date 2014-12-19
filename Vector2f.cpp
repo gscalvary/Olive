@@ -10,8 +10,8 @@
 
 Vector2f::Vector2f() {
     
-    x = 0.0;
-    y = 0.0;
+    x = 0.0f;
+    y = 0.0f;
 }
 
 Vector2f::Vector2f(float x, float y) {

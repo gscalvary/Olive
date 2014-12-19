@@ -14,6 +14,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Input.h"
+#include "Matrix4f.h"
 #include "Mesh.h"
 #include "Shader.h"
 #include "Vector3f.h"
@@ -64,6 +65,12 @@ public:
     // Example: theTest.runMeshTests();
     // Strategy: Function Composition
     void runMeshTests();
+    
+    //  -> void
+    // Run Matrix4f class method tests.
+    // Example: theTest.runMatrix4fTests();
+    // Strategy: Function Composition
+    void runMatrix4fTests();
     
     //  -> void
     // Run static function loadShader test.

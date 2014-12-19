@@ -190,6 +190,7 @@ void World::updateWorld() {
     //TODO: REMOVE THIS TEST CODE!
     testUniform += gameClock->getDeltaTime();
     testTransform.setTranslation(sin(testUniform), 0.0f, 0.0f);
+    testTransform.setRotation(0.0f, 0.0f, sin(testUniform) * 180.0f);
 }
 
 void World::stopWorld() {

@@ -34,6 +34,7 @@ void TestManager::runTests() {
     runMeshTests();
     runLoadShaderTests();
     runShaderTests();
+    runMatrix4fTests();
     
     std::cout << "Engine testing successfully completed." << std::endl;
 }
@@ -89,6 +90,91 @@ void TestManager::runMeshTests() {
     }
     
     std::cout << " Mesh class validated!" << std::endl;
+}
+
+void TestManager::runMatrix4fTests() {
+    
+    std::cout << " - Running Matrix4f tests:";
+    
+    // constructor, getters and setters
+    Matrix4f testMatrix;
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            assert(testMatrix.getEntryMatrix4f(i, j) == 0.0f);
+            testMatrix.setEntryMatrix4f(i, j, 1.0f);
+            assert(testMatrix.getEntryMatrix4f(i, j) == 1.0f);
+        }
+    }
+    
+    // set identity
+    testMatrix.setIdentityMatrix4f();
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            if (i == j) {
+                assert(testMatrix.getEntryMatrix4f(i, j) == 1.0f);
+            } else {
+                assert(testMatrix.getEntryMatrix4f(i, j) == 0.0f);
+            }
+        }
+    }
+    
+    // set translation
+    testMatrix.setTranslationMatrix4f(2.0f, 3.0f, 4.0f);
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            if (i == j) {
+                assert(testMatrix.getEntryMatrix4f(i, j) == 1.0f);
+            } else {
+                if (j == 3) {
+                    if (i == 0) {
+                        assert(testMatrix.getEntryMatrix4f(i, j) == 2.0f);
+                    } else {
+                        if (i == 1) {
+                            assert(testMatrix.getEntryMatrix4f(i, j) == 3.0f);
+                        } else {
+                            assert(testMatrix.getEntryMatrix4f(i, j) == 4.0f);
+                        }
+                    }
+                } else {
+                    assert(testMatrix.getEntryMatrix4f(i, j) == 0.0f);
+                }
+            }
+        }
+    }
+    
+    // multiplication
+    Matrix4f otherMatrix;
+    otherMatrix.setIdentityMatrix4f();
+    float p = 0.0f;
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            testMatrix.setEntryMatrix4f(i, j, p);
+            ++p;
+        }
+    }
+    p = 0.0f;
+    testMatrix.multMatrix4f(&otherMatrix);
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            assert(testMatrix.getEntryMatrix4f(i, j) == p);
+            ++p;
+        }
+    }
+    
+    // set rotation
+    testMatrix.setIdentityMatrix4f();
+    testMatrix.setRotationMatrix4f(360.0f, 360.0f, 360.0f);
+    for (unsigned i = 0; i < 4; ++i) {
+        for (unsigned j = 0; j < 4; ++j) {
+            if (i == j) {
+                assert(testMatrix.getEntryMatrix4f(i, j) == 1.0f);
+            } else {
+                assert(abs(testMatrix.getEntryMatrix4f(i, j)) <= 0.000001f);
+            }
+        }
+    }
+    
+    std::cout << " Matrix4f class validated!" << std::endl;
 }
 
 void TestManager::runLoadShaderTests() {

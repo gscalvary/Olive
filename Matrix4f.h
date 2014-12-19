@@ -9,6 +9,7 @@
 #ifndef __Olive__Matrix4f__
 #define __Olive__Matrix4f__
 
+#include <cmath>
 #include <stdio.h>
 
 #endif /* defined(__Olive__Matrix4f__) */
@@ -61,26 +62,38 @@ public:
     // Strategy: Domain Knowledge
     void setTranslationMatrix4f(float x, float y, float z);
     
-    // Matrix4f -> Matrix4f
-    // Given a matrix multiply it by this matrix and return the result.
+    // float, float, float -> void
+    // EFFECT: Modify the x, y and z components of the matrix by the given x, y
+    // and z degree rotations.
+    // Example: setRotationMatrix4f(180.0f, 180.0f, 180.0f); sets:
+    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    //  m[1][0] = 0.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 0.0
+    //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 1.0   m[2][3] = 0.0
+    //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0
+    // Strategy: Function Composition
+    void setRotationMatrix4f(float x, float y, float z);
+    
+    // Matrix4f* -> void
+    // EFFECT: Given a pointer to a matrix multiply it by this matrix.
     // Example: myMatrix =
-    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    // (m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
     //  m[1][0] = 2.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 0.0
     //  m[2][0] = 3.0    m[2][1] = 2.0   m[2][2] = 1.0   m[2][3] = 0.0
     //  m[3][0] = 4.0    m[3][1] = 3.0   m[3][2] = 2.0   m[3][3] = 1.0)
-    //  multMatrix4f(
-    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    //  otherMatrix =
+    // (m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
     //  m[1][0] = 2.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 0.0
     //  m[2][0] = 3.0    m[2][1] = 2.0   m[2][2] = 1.0   m[2][3] = 0.0
     //  m[3][0] = 4.0    m[3][1] = 3.0   m[3][2] = 2.0   m[3][3] = 1.0)
-    //  returns:
-    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    //  myMatrix.multMatrix4f(otherMatrix&) sets myMatrix to:
+    // (m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
     //  m[1][0] = 0.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 0.0
     //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 1.0   m[2][3] = 0.0
     //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0)
     // Strategy: Domain Knowledge
-    Matrix4f multMatrix4f(Matrix4f n);
+    void multMatrix4f(Matrix4f* n);
     
 private:
     
+    const double piD = 3.141592653589793238463;
 };

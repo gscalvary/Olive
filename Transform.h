@@ -9,6 +9,7 @@
 #ifndef __Olive__Transform__
 #define __Olive__Transform__
 
+#include <iostream>
 #include <stdio.h>
 #include "Matrix4f.h"
 #include "Vector3f.h"
@@ -48,11 +49,33 @@ public:
     
     // float, float, float -> void
     // Given the x, y and z coordinates of a Vector3f set the translation's
-    // atrtributes to them.
+    // attributes to them.
     // Example: myTransform.setTranslation(0.0f, 1.0f, 2.0f); sets translation
-    // x coordiante to 0.0f, y coordinate to 1.0f and z coordinate to 2.0f.
+    // x coordinate to 0.0f, y coordinate to 1.0f and z coordinate to 2.0f.
     // Strategy: Function Composition
     void setTranslation(float x, float y, float z);
+    
+    //  -> Vector3f*
+    // Return a pointer to the rotation Vector3f of this Transform object.
+    // Example: myTransform.getRotationPtr(); returns a pointer to
+    // rotation.
+    // Strategy: Domain Knowledge
+    Vector3f* getRotationPtr();
+    
+    // Vector3f& -> void
+    // Given an address of a Vector3f set this objects rotation to it.
+    // Example: myTransform.setRotation(vector3f&); sets rotation to the
+    // given address.
+    // Strategy: Domain Knowledge
+    void setRotation(Vector3f& rotationAddress);
+    
+    // float, float, float -> void
+    // Given the x, y and z coordinates of a Vector3f set the rotation's
+    // attributes to them.
+    // Example: myTransform.setRotation(0.0f, 1.0f, 2.0f); sets rotation
+    // x coordinate to 0.0f, y coordinate to 1.0f and z coordinate to 2.0f.
+    // Strategy: Function Composition
+    void setRotation(float x, float y, float z);
     
     //  -> Matrix4f*
     // Return a pointer to the transformation matrix.
@@ -64,6 +87,9 @@ public:
     
 private:
     
+    Vector3f* rotation;
     Vector3f* translation;
-    Matrix4f* transformation;
+    Matrix4f* rotationMatrix;
+    Matrix4f* translationMatrix;
+    Matrix4f* resultMatrix;
 };
