@@ -62,9 +62,9 @@ void Transform::setRotation(float x, float y, float z) {
 
 Matrix4f* Transform::getTransformationPtr() {
     
-    rotationMatrix->setTranslationMatrix4f(rotation->getVector3fX(),
-                                           rotation->getVector3fY(),
-                                           rotation->getVector3fZ());
+    rotationMatrix->setRotationMatrix4f(rotation->getVector3fX(),
+                                        rotation->getVector3fY(),
+                                        rotation->getVector3fZ());
     translationMatrix->setTranslationMatrix4f(translation->getVector3fX(),
                                               translation->getVector3fY(),
                                               translation->getVector3fZ());
