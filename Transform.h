@@ -9,7 +9,6 @@
 #ifndef __Olive__Transform__
 #define __Olive__Transform__
 
-#include <iostream>
 #include <stdio.h>
 #include "Matrix4f.h"
 #include "Vector3f.h"
@@ -77,6 +76,28 @@ public:
     // Strategy: Function Composition
     void setRotation(float x, float y, float z);
     
+    //  -> Vector3f*
+    // Return a pointer to the scale Vector3f of this Transform object.
+    // Example: myTransform.getScalePtr(); returns a pointer to
+    // scale.
+    // Strategy: Domain Knowledge
+    Vector3f* getScalePtr();
+    
+    // Vector3f& -> void
+    // Given an address of a Vector3f set this objects scale to it.
+    // Example: myTransform.setScale(vector3f&); sets scale to the
+    // given address.
+    // Strategy: Domain Knowledge
+    void setScale(Vector3f& scaleAddress);
+    
+    // float, float, float -> void
+    // Given the x, y and z coordinates of a Vector3f set the scale's
+    // attributes to them.
+    // Example: myTransform.setScale(0.0f, 1.0f, 2.0f); sets scale
+    // x coordinate to 0.0f, y coordinate to 1.0f and z coordinate to 2.0f.
+    // Strategy: Function Composition
+    void setScale(float x, float y, float z);
+    
     //  -> Matrix4f*
     // Return a pointer to the transformation matrix.
     // EFFECT: transforms the matrix by the translation vector.
@@ -88,8 +109,9 @@ public:
 private:
     
     Vector3f* rotation;
+    Vector3f* scale;
     Vector3f* translation;
     Matrix4f* rotationMatrix;
+    Matrix4f* scaleMatrix;
     Matrix4f* translationMatrix;
-    Matrix4f* resultMatrix;
 };

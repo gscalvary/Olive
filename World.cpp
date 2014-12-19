@@ -191,6 +191,7 @@ void World::updateWorld() {
     testUniform += gameClock->getDeltaTime();
     testTransform.setTranslation(sin(testUniform), 0.0f, 0.0f);
     testTransform.setRotation(0.0f, 0.0f, sin(testUniform) * 180.0f);
+    testTransform.setScale(sin(testUniform), sin(testUniform), sin(testUniform));
 }
 
 void World::stopWorld() {

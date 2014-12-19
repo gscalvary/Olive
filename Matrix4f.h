@@ -73,6 +73,17 @@ public:
     // Strategy: Function Composition
     void setRotationMatrix4f(float x, float y, float z);
     
+    // float, float, float -> void
+    // EFFECT: Modify the x, y and z components of the matrix by the given x, y
+    // and z degree rotations.
+    // Example: setScaleMatrix4f(2.0f, 3.0f, 4.0f); sets:
+    //  m[0][0] = 2.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    //  m[1][0] = 0.0    m[1][1] = 3.0   m[1][2] = 0.0   m[1][3] = 0.0
+    //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 4.0   m[2][3] = 0.0
+    //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0
+    // Strategy: Function Composition
+    void setScaleMatrix4f(float x, float y, float z);
+    
     // Matrix4f* -> void
     // EFFECT: Given a pointer to a matrix multiply it by this matrix.
     // Example: myMatrix =
