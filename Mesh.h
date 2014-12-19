@@ -32,12 +32,16 @@ public:
     // Strategy: Function Composition
     ~Mesh();
     
-    // vector -> void
-    // Given a vector of vertex pointers process the data.
+    // vector vector -> void
+    // Given a vector of vertex pointers and a vector of GLubyte indices process
+    // the data.
     // INVARIANT: the vector of vertex pointers must contain at least one vertex
-    // Example: addVerticesMesh(myVerticesVector)
+    //            the vector of GLubyte indices must contain at least three
+    //            entries (one triangle)
+    // Example: addVerticesMesh(myVerticesVector, myIndexVector)
     // Strategy: Function Composition
-    void addVerticesMesh(std::vector<Vertex*> vertices);
+    void addVerticesMesh(std::vector<Vertex*> vertices,
+                         std::vector<GLubyte> indices);
     
     //  -> void
     // Submit the mesh to OpenGL for drawing.
@@ -47,15 +51,25 @@ public:
     
     // unsigned -> float
     // Given an unsigned int as an index, return the float associated with the
-    // index from the mesh buffer.
+    // index from the mesh vbo buffer.
     // INVARIANT: unsigned < numVertex * numVertexPosCoords
-    // Example: getBufferElementMesh(0);
+    // Example: getVboBufferElementMesh(0);
     // Strategy: Function Composition
-    float getBufferElementMesh(unsigned index);
+    float getVboBufferElementMesh(unsigned index);
+    
+    // unsigned -> int
+    // Given an unsigned int as an index, return the int associated with the
+    // index from the mesh ibo buffer.
+    // INVARIANT: unsigned < number of elements in the ibo buffer
+    // Example: getIboBufferElementMesh(0);
+    // Strategy: Function Composition
+    int getIboBufferElementMesh(unsigned index);
     
 private:
     
     unsigned numVertex;
     unsigned numVertexPosCoords;
-    GLfloat* buffer;
+    unsigned numIndices;
+    GLubyte* iboBuffer;
+    GLfloat* vboBuffer;
 };

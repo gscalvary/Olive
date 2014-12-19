@@ -80,13 +80,17 @@ void TestManager::runMeshTests() {
     vertices.push_back(&testVertex1);
     vertices.push_back(&testVertex2);
     vertices.push_back(&testVertex3);
+    std::vector<GLubyte> indices;
+    indices.push_back(0);
+    indices.push_back(1);
+    indices.push_back(2);
 
     // constructors and getters
     Mesh testMesh;
-    testMesh.addVerticesMesh(vertices);
+    testMesh.addVerticesMesh(vertices, indices);
     float buffer[9] = {-0.6f, -0.4f, 0.0f, 0.6f, -0.4f, 0.0f, 0.0f, 0.6f, 0.0f};
     for (unsigned i; i < 9; ++i) {
-        assert(buffer[i] == testMesh.getBufferElementMesh(i));
+        assert(buffer[i] == testMesh.getVboBufferElementMesh(i));
     }
     
     std::cout << " Mesh class validated!" << std::endl;
