@@ -35,6 +35,7 @@ void TestManager::runTests() {
     runLoadShaderTests();
     runShaderTests();
     runMatrix4fTests();
+    runLoadMeshTests();
     
     std::cout << "Engine testing successfully completed." << std::endl;
 }
@@ -201,4 +202,14 @@ void TestManager::runShaderTests() {
     //Shader myShader;
     
     std::cout << " Shader class validated!" << std::endl;
+}
+
+void TestManager::runLoadMeshTests() {
+    
+    std::cout << " - Running loadMesh tests:";
+    
+    std::string goodFileName = "Model.obj";
+    loadMesh(goodFileName);
+    
+    std::cout << " loadMesh function validated!" << std::endl;
 }

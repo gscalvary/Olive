@@ -75,7 +75,7 @@ public:
     //  -> void
     // Run static function loadShader test.
     // Example: std::string fileName = "badFileName";
-    //          std::string result = loadShader(fileName + ".glsl");
+    //          runLoadShaderTests(fileName);
     // Strategy: Function Composition
     void runLoadShaderTests();
     
@@ -84,6 +84,13 @@ public:
     // Example: theTest.runShaderTests();
     // Strategy: Function Composition
     void runShaderTests();
+    
+    //  -> void
+    // Run static function loadMesh test.
+    // Example: std::string fileName = "Model.obj";
+    //          runLoadMeshTests(fileName);
+    // Strategy: Function Composition
+    void runLoadMeshTests();
     
 protected:
     

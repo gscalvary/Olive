@@ -10,8 +10,10 @@
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 #include <GLFW/glfw3.h>
 #include "InputManager.h"
+#include "Mesh.h"
 
 // GLFW is handling user input for the engine.  GLFW is C based, the callback
 // functions for input must not be class methods.
@@ -55,5 +57,13 @@ void mouseMotion(GLFWwindow* window, double x, double y);
 // a string containing of the entire contents of the file.
 // INVARIANT: the shader must be in the ./res/shaders/ directory.
 // Example: loadShader(myShaderFileName);
-// Strategy: Domain Knowledge
+// Strategy: Function Composition
 std::string loadShader(const std::string& fileName);
+
+// string& -> Mesh*
+// Given a pointer to a filename of a text file containing the vertices of a
+// model, loads it into a mesh object and returns a pointer to it.
+// INVARIANT: the model must be in the ./res/models/ directory.
+// Example: loadMesh(myModelFileName);
+// Strategy: Function Composition
+Mesh* loadMesh(const std::string& fileName);
