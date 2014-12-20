@@ -79,70 +79,11 @@ int World::initializeWorld() {
     chdir(path);
     chdir("..");
     
+    // print the current directory
+    //std::cout << getcwd(path, PATH_MAX) << std::endl;
+    
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
-    Vector3f vector0(-0.5f, -0.5f,  0.5f);
-    Vector3f vector1(-0.5f,  0.5f,  0.5f);
-    Vector3f vector2(-0.5f,  0.5f,  0.0f);
-    Vector3f vector3(-0.5f, -0.5f,  0.0f);
-    Vector3f vector4( 0.5f, -0.5f,  0.0f);
-    Vector3f vector5( 0.5f,  0.5f,  0.0f);
-    Vector3f vector6( 0.5f,  0.5f,  0.5f);
-    Vector3f vector7( 0.5f, -0.5f,  0.5f);
-    Vertex vertex0(&vector0);
-    Vertex vertex1(&vector1);
-    Vertex vertex2(&vector2);
-    Vertex vertex3(&vector3);
-    Vertex vertex4(&vector4);
-    Vertex vertex5(&vector5);
-    Vertex vertex6(&vector6);
-    Vertex vertex7(&vector7);
-    std::vector<Vertex*> vertices;
-    vertices.push_back(&vertex0);
-    vertices.push_back(&vertex1);
-    vertices.push_back(&vertex2);
-    vertices.push_back(&vertex3);
-    vertices.push_back(&vertex4);
-    vertices.push_back(&vertex5);
-    vertices.push_back(&vertex6);
-    vertices.push_back(&vertex7);
-    std::vector<GLubyte> indices;
-    indices.push_back(0);
-    indices.push_back(1);
-    indices.push_back(6);
-    indices.push_back(6);
-    indices.push_back(7);
-    indices.push_back(0);
-    indices.push_back(0);
-    indices.push_back(1);
-    indices.push_back(2);
-    indices.push_back(2);
-    indices.push_back(0);
-    indices.push_back(3);
-    indices.push_back(3);
-    indices.push_back(2);
-    indices.push_back(5);
-    indices.push_back(5);
-    indices.push_back(3);
-    indices.push_back(4);
-    indices.push_back(4);
-    indices.push_back(7);
-    indices.push_back(5);
-    indices.push_back(5);
-    indices.push_back(7);
-    indices.push_back(6);
-    indices.push_back(6);
-    indices.push_back(1);
-    indices.push_back(2);
-    indices.push_back(2);
-    indices.push_back(5);
-    indices.push_back(6);
-    indices.push_back(0);
-    indices.push_back(3);
-    indices.push_back(4);
-    indices.push_back(4);
-    indices.push_back(7);
-    indices.push_back(0);
-    testMesh.addVerticesMesh(vertices, indices);
+    loadMesh("soccerBall.obj", &testMesh);
     testShader = new Shader();
     testShader->addVertexShader(loadShader("basicVertex.glsl"));
     testShader->addFragmentShader(loadShader("basicFragment.glsl"));
@@ -242,8 +183,12 @@ void World::updateWorld() {
     //TODO: REMOVE THIS TEST CODE!
     testUniform += gameClock->getDeltaTime();
     testTransform.setTranslation(sin(testUniform), 0.0f, 0.0f);
-    testTransform.setRotation(sin(testUniform) * 180.0f, sin(testUniform) * 180.0f, sin(testUniform) * 180.0f);
-    testTransform.setScale(sin(testUniform), sin(testUniform), sin(testUniform));
+    testTransform.setRotation(sin(testUniform) * 180.0f,
+                              sin(testUniform) * 180.0f,
+                              sin(testUniform) * 180.0f);
+    testTransform.setScale(sin(testUniform),
+                           sin(testUniform),
+                           sin(testUniform));
 }
 
 void World::stopWorld() {

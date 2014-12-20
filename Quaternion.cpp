@@ -61,15 +61,13 @@ float Quaternion::lengthQuaternion() {
     return (float)sqrtf(x * x + y * y + z * z + w * w);
 }
 
-Quaternion Quaternion::normalizeQuaternion() {
+void Quaternion::normalizeQuaternion() {
     
     float length = lengthQuaternion();
     x /= length;
     y /= length;
     z /= length;
     w /= length;
-    
-    return *this;
 }
 
 Quaternion Quaternion::conjugateQuaternion() {

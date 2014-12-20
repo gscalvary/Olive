@@ -115,8 +115,8 @@ private:
     Window* mainWindow;
     Time* gameClock;
     bool isWorldRunning;
-    const unsigned mainWindowWidth = 800;
-    const unsigned mainWindowHeight = 800;
+    const unsigned mainWindowWidth = 1024;
+    const unsigned mainWindowHeight = 640;
     const unsigned swapInterval = 1;
     const float frameCap = 100.0;
     

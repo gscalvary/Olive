@@ -208,8 +208,9 @@ void TestManager::runLoadMeshTests() {
     
     std::cout << " - Running loadMesh tests:";
     
-    std::string goodFileName = "Model.obj";
-    loadMesh(goodFileName);
+    std::string goodFileName = "soccerBall.obj";
+    Mesh testMesh;
+    loadMesh(goodFileName, &testMesh);
     
     std::cout << " loadMesh function validated!" << std::endl;
 }

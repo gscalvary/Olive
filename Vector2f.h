@@ -76,12 +76,12 @@ public:
     // Strategy: Function Composition
     float dotProductVector2f(Vector2f otherVector);
     
-    //  -> Vector2f
-    // EFFECT: Normalize this vector and return it.
+    //  -> void
+    // EFFECT: Normalize this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->normalizeVector2f() returns (1.0, 0.0);
+    //          myVector->normalizeVector2f() sets (1.0, 0.0);
     // Strategy: Function Composition
-    Vector2f normalizeVector2f();
+    void normalizeVector2f();
     
     // float -> Vector2f
     // EFFECT: Rotate this vector by the given float angle and return it.

@@ -60,10 +60,10 @@ void mouseMotion(GLFWwindow* window, double x, double y);
 // Strategy: Function Composition
 std::string loadShader(const std::string& fileName);
 
-// string& -> Mesh*
+// string&, Mesh* -> void
 // Given a pointer to a filename of a text file containing the vertices of a
-// model, loads it into a mesh object and returns a pointer to it.
+// model, and a pointer to a Mesh, load the data into the  mesh object.
 // INVARIANT: the model must be in the ./res/models/ directory.
-// Example: loadMesh(myModelFileName);
+// Example: loadMesh(myModelFileName, myMeshAddress);
 // Strategy: Function Composition
-Mesh* loadMesh(const std::string& fileName);
+void loadMesh(const std::string& fileName, Mesh* mesh);

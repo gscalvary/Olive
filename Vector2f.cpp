@@ -59,13 +59,11 @@ float Vector2f::dotProductVector2f(Vector2f otherVector) {
     return (x * otherVector.getVector2fX() + y * otherVector.getVector2fY());
 }
 
-Vector2f Vector2f::normalizeVector2f() {
+void Vector2f::normalizeVector2f() {
     
     float length = lengthVector2f();
     x /= length;
     y /= length;
-    
-    return *this;
 }
 
 Vector2f Vector2f::rotateVector2f(float angle) {

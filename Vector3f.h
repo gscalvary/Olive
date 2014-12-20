@@ -98,12 +98,12 @@ public:
     // Strategy: Function Composition
     Vector3f crossProductVector3f(Vector3f otherVector);
     
-    //  -> Vector3f
-    // EFFECT: Normalize this vector and return it.
+    //  -> void
+    // EFFECT: Normalize this vector.
     // Example: Vector3f myVector(2.0, 1.0, 2.0)
-    //          myVector->normalizeVector3f() returns (0.66, 0.33, 0.66);
+    //          myVector->normalizeVector3f() sets (0.66, 0.33, 0.66);
     // Strategy: Function Composition
-    Vector3f normalizeVector3f();
+    void normalizeVector3f();
     
     // float -> Vector3f
     // EFFECT: Rotate this vector by the given float angle and return it.

@@ -82,13 +82,13 @@ public:
     // Strategy: Function Composition
     float lengthQuaternion();
     
-    //  -> Quaternion
-    // EFFECT: Normalize this Quaternion and return it.
+    //  -> void
+    // EFFECT: Normalize this Quaternion.
     // Example: Quaternion myQuaternion(2.0, 1.0, 2.0, 1.0)
-    //          myQuaternion->normalizeQuaternion() returns
+    //          myQuaternion->normalizeQuaternion() sets
     //          (0.5, 0.25, 0.5, 0.25);
     // Strategy: Function Composition
-    Quaternion normalizeQuaternion();
+    void normalizeQuaternion();
     
     //  -> Quaternion
     // Return a new Quaternion object that is the conjugate of this one.

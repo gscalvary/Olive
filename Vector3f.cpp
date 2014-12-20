@@ -82,14 +82,12 @@ Vector3f Vector3f::crossProductVector3f(Vector3f otherVector) {
     return *new Vector3f(newX, newY, newZ);
 }
 
-Vector3f Vector3f::normalizeVector3f() {
+void Vector3f::normalizeVector3f() {
     
     float length = lengthVector3f();
     x /= length;
     y /= length;
     z /= length;
-    
-    return *this;
 }
 
 Vector3f Vector3f::rotateVector3f(float angle) {
