@@ -103,14 +103,42 @@ public:
     // EFFECT: transforms the matrix by the translation vector.
     // Example: myTransform.getTransformationPtr(); returns a pointer to the
     // transformation matrix.
-    // Strategy: Domain Knowledge
+    // Strategy: Function Composition
     Matrix4f* getTransformationPtr();
     
+    //  -> Matrix4f*
+    // Return a pointer to a projected transformation matrix.
+    // EFFECT: applies a projection to the transformation matrix.
+    // Example: myTransform.getProjectedTransformationPtr(); returns a pointer
+    // to the projected transformation matrix.
+    // Strategy: Function Composition
+    Matrix4f* getProjectedTransformationPtr();
+    
+    // float, float, float, float, float -> void
+    // Given the zNear, zFar, width of the screen, height of the screen and
+    // field of view angle set the transforms projection attributes to them.
+    // Example: myTransform.setProjection(0.1f, 1.0f, 800.0f, 600.0f, 270.0f);
+    // sets: zNear = 0.1f
+    //       zFar = 1.0f
+    //       width = 800.0f
+    //       height = 600.0f
+    //       fov = 270.0f
+    // Strategy: Domain Knowledge
+    void setProjection(float zNear, float zFar, float width, float height, float fov);
+    
 private:
+    
+    float zNear;
+    float zFar;
+    float width;
+    float height;
+    // degrees
+    float fov;
     
     Vector3f* rotation;
     Vector3f* scale;
     Vector3f* translation;
+    Matrix4f* projectionMatrix;
     Matrix4f* rotationMatrix;
     Matrix4f* scaleMatrix;
     Matrix4f* translationMatrix;

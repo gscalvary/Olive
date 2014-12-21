@@ -109,7 +109,6 @@ void loadMesh(const std::string& fileName, Mesh* mesh) {
                 float y = std::stof(tokens[2]);
                 float z = std::stof(tokens[3]);
                 Vector3f* newVector = new Vector3f(x, y, z);
-                newVector->normalizeVector3f();
                 Vertex* newVertex = new Vertex(newVector);
                 delete newVector;
                 vertices.push_back(newVertex);

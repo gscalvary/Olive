@@ -84,6 +84,18 @@ public:
     // Strategy: Function Composition
     void setScaleMatrix4f(float x, float y, float z);
     
+    // float, float, float, float, float -> void
+    // EFFECT: Modify the matrix components according to given zNear, zFar,
+    // screen width, screen height and field of view specifications.
+    // Example: setProjectionMatrix4f(0.1f, 1.0f, 800.0f, 600.0f, 270.0f); sets:
+    //  m[0][0] = 1.0    m[0][1] = 0.0   m[0][2] = 0.0   m[0][3] = 0.0
+    //  m[1][0] = 0.0    m[1][1] = 1.0   m[1][2] = 0.0   m[1][3] = 0.0
+    //  m[2][0] = 0.0    m[2][1] = 0.0   m[2][2] = 1.0   m[2][3] = 0.0
+    //  m[3][0] = 0.0    m[3][1] = 0.0   m[3][2] = 0.0   m[3][3] = 1.0
+    // Strategy: Function Composition
+    void setProjectionMatrix4f(float zNear, float zFar, float width,
+                               float height, float fov);
+    
     // Matrix4f* -> void
     // EFFECT: Given a pointer to a matrix multiply it by this matrix.
     // Example: myMatrix =

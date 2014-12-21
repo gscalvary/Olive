@@ -83,13 +83,18 @@ int World::initializeWorld() {
     //std::cout << getcwd(path, PATH_MAX) << std::endl;
     
     // TODO: REMOVE THIS TEST FUNCTIONALITY!
-    loadMesh("soccerBall.obj", &testMesh);
+    loadMesh("cube.obj", &testMesh);
     testShader = new Shader();
     testShader->addVertexShader(loadShader("basicVertex.glsl"));
     testShader->addFragmentShader(loadShader("basicFragment.glsl"));
     testShader->linkShader();
     testShader->addUniform("transform");
     testUniform = 0.0f;
+    testTransform.setProjection(0.1f,
+                                1000.0f,
+                                (float)mainWindow->getWindowWidth(),
+                                (float)mainWindow->getWindowHeight(),
+                                70.0f);
     
     return 0;
 }
@@ -171,7 +176,7 @@ void World::renderWorld() {
     //TODO: REMOVE THIS TEST CODE!
     testShader->bindShader();
     testShader->setUniformMatrix4f("transform",
-                                   testTransform.getTransformationPtr());
+                                   testTransform.getProjectedTransformationPtr());
     testMesh.drawMesh();
     
     // swap buffers
@@ -182,10 +187,10 @@ void World::updateWorld() {
     
     //TODO: REMOVE THIS TEST CODE!
     testUniform += gameClock->getDeltaTime();
-    testTransform.setTranslation(sin(testUniform), 0.0f, 0.0f);
+    testTransform.setTranslation(0.0f, 0.0f, 10.0f);
     testTransform.setRotation(sin(testUniform) * 180.0f,
                               sin(testUniform) * 180.0f,
-                              sin(testUniform) * 180.0f);
+                              0.0f);
     testTransform.setScale(sin(testUniform),
                            sin(testUniform),
                            sin(testUniform));

@@ -13,6 +13,7 @@ Transform::Transform() {
     rotation = new Vector3f();
     scale = new Vector3f(1.0f, 1.0f, 1.0f);
     translation = new Vector3f();
+    projectionMatrix = new Matrix4f();
     rotationMatrix = new Matrix4f();
     scaleMatrix = new Matrix4f();
     translationMatrix = new Matrix4f();
@@ -23,6 +24,7 @@ Transform::~Transform() {
     delete rotation;
     delete scale;
     delete translation;
+    delete projectionMatrix;
     delete rotationMatrix;
     delete scaleMatrix;
     delete translationMatrix;
@@ -100,4 +102,30 @@ Matrix4f* Transform::getTransformationPtr() {
     translationMatrix->multMatrix4f(rotationMatrix);
     
     return translationMatrix;
+}
+
+Matrix4f* Transform::getProjectedTransformationPtr() {
+    
+    // first affect the transformation
+    Matrix4f* transformationMatrix = getTransformationPtr();
+    
+    // now set the projection matrix using the Transform's projection
+    // attributes
+    projectionMatrix->setProjectionMatrix4f(zNear, zFar, width, height, fov);
+    
+    // multiply the projection matrix by the transformation matrix storing the
+    // result in the projection matrix
+    projectionMatrix->multMatrix4f(transformationMatrix);
+    
+    return projectionMatrix;
+}
+
+void Transform::setProjection(float zNear, float zFar, float width,
+                              float height, float fov) {
+    
+    this->zNear = zNear;
+    this->zFar = zFar;
+    this->width = width;
+    this->height = height;
+    this->fov = fov;
 }

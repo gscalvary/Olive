@@ -101,6 +101,37 @@ void Matrix4f::setScaleMatrix4f(float x, float y, float z) {
     m[3][0] = 0.0f;    m[3][1] = 0.0f;   m[3][2] = 0.0f;   m[3][3] = 1.0f;
 }
 
+void Matrix4f::setProjectionMatrix4f(float zNear, float zFar, float width,
+                                     float height,
+                                     float fov) {
+    
+    // convert fov to radians
+    fov = (float)(fov * piD / 180.0f);
+    float tanHalfFov = tan(fov / 2);
+    float zRange = zNear - zFar;
+    float aspectRatio = width/height;
+    
+    m[0][0] = 1.0f / (tanHalfFov * aspectRatio);
+    m[0][1] = 0.0f;
+    m[0][2] = 0.0f;
+    m[0][3] = 0.0f;
+    
+    m[1][0] = 0.0f;
+    m[1][1] = 1.0f / tanHalfFov;
+    m[1][2] = 0.0f;
+    m[1][3] = 0.0f;
+    
+    m[2][0] = 0.0f;
+    m[2][1] = 0.0f;
+    m[2][2] = (-zNear - zFar) / zRange;
+    m[2][3] = 2.0f * zFar * zNear / zRange;
+    
+    m[3][0] = 0.0f;
+    m[3][1] = 0.0f;
+    m[3][2] = 1.0f;
+    m[3][3] = 0.0f;
+}
+
 void Matrix4f::multMatrix4f(Matrix4f* n) {
     
     Matrix4f temp;
