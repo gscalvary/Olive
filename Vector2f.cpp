@@ -66,14 +66,14 @@ void Vector2f::normalizeVector2f() {
     y /= length;
 }
 
-Vector2f Vector2f::rotateVector2f(float angle) {
+void Vector2f::rotateVector2f(float angle) {
     
     double rad = angle * piD / 180.0;
     double cosRad = cos(rad);
     double sinRad = sin(rad);
     
-    return *new Vector2f((float)(x * cosRad - y * sinRad),
-                         (float)(x * sinRad + y * cosRad));
+    x = (float)(x * cosRad - y * sinRad);
+    y = (float)(x * sinRad + y * cosRad);
 }
 
 Vector2f Vector2f::addVector2f(Vector2f otherVector) {

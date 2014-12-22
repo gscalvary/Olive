@@ -83,12 +83,14 @@ public:
     // Strategy: Function Composition
     void normalizeVector2f();
     
-    // float -> Vector2f
-    // EFFECT: Rotate this vector by the given float angle and return it.
+    // float -> void
+    // EFFECT: Rotate this vector by the given float angle, given in degrees,
+    // and store the results in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->rotateVector2f((180.0)) returns (-1.0, 0.0);
+    //          myVector->rotateVector2f(180.0) sets the
+    //          vector to (-2.0, 0.0);
     // Strategy: Function Composition
-    Vector2f rotateVector2f(float angle);
+    void rotateVector2f(float angle);
     
     // Vector2f -> Vector2f
     // Adds this vector to the passed in vector and allocates the result as a

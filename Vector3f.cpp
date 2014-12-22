@@ -73,13 +73,11 @@ float Vector3f::dotProductVector3f(Vector3f otherVector) {
             z * otherVector.getVector3fZ());
 }
 
-Vector3f Vector3f::crossProductVector3f(Vector3f otherVector) {
+void Vector3f::crossProductVector3f(Vector3f otherVector) {
     
-    float newX = y * otherVector.getVector3fZ() - z * otherVector.getVector3fY();
-    float newY = z * otherVector.getVector3fX() - x * otherVector.getVector3fZ();
-    float newZ = x * otherVector.getVector3fY() - y * otherVector.getVector3fX();
-    
-    return *new Vector3f(newX, newY, newZ);
+    x = y * otherVector.getVector3fZ() - z * otherVector.getVector3fY();
+    y = z * otherVector.getVector3fX() - x * otherVector.getVector3fZ();
+    z = x * otherVector.getVector3fY() - y * otherVector.getVector3fX();
 }
 
 void Vector3f::normalizeVector3f() {
@@ -90,13 +88,9 @@ void Vector3f::normalizeVector3f() {
     z /= length;
 }
 
-Vector3f Vector3f::rotateVector3f(float angle) {
+void Vector3f::rotateVector3f(float angle, Vector3f axis) {
     
-    //double rad = angle * piD / 180.0;
-    //double cosRad = cos(rad);
-    //double sinRad = sin(rad);
     
-    return *this;
 }
 
 Vector3f Vector3f::addVector3f(Vector3f otherVector) {

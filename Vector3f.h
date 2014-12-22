@@ -89,14 +89,14 @@ public:
     // Strategy: Function Composition
     float dotProductVector3f(Vector3f otherVector);
     
-    // Vector3f -> Vector3f
-    // Return the cross product of this vector and the input vector and allocate
-    // the result as a new Vector3f.
+    // Vector3f -> void
+    // EFFECT: Compute the cross product of this vector and the input vector and
+    // store the result in this vector.
     // Example: Vector3f myVector(2.0, 0.0, 1.0)
-    //          myVector->crossProductVector3f((2.0, 1.0, 2.0)); returns new
-    //          object Vector3f (-1.0, -2.0, 2.0)
+    //          myVector->crossProductVector3f((2.0, 1.0, 2.0)); sets my vector
+    //          to (-1.0, -2.0, 2.0)
     // Strategy: Function Composition
-    Vector3f crossProductVector3f(Vector3f otherVector);
+    void crossProductVector3f(Vector3f otherVector);
     
     //  -> void
     // EFFECT: Normalize this vector.
@@ -105,12 +105,15 @@ public:
     // Strategy: Function Composition
     void normalizeVector3f();
     
-    // float -> Vector3f
-    // EFFECT: Rotate this vector by the given float angle and return it.
+    // float, Vector3f -> void
+    // EFFECT: Rotate this vector by the given float angle, given in degrees,
+    // around the axis, given as the Vector3f, and store the results in this
+    // vector.
     // Example: Vector3f myVector(2.0, 0.0, 1.0)
-    //          myVector->rotateVector3f((180.0)) returns (-2.0, 0.0, -1.0);
+    //          myVector->rotateVector3f((180.0), (0.0f, 1.0f, 0.0f) sets the
+    //          vector to (-2.0, 0.0, -1.0);
     // Strategy: Function Composition
-    Vector3f rotateVector3f(float angle);
+    void rotateVector3f(float angle, Vector3f axis);
     
     // Vector3f -> Vector3f
     // Adds this vector to the passed in vector and allocates the result as a
