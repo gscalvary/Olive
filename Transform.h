@@ -125,20 +125,11 @@ public:
     //       height = 600.0f
     //       fov = 270.0f
     // Strategy: Domain Knowledge
-    void setProjection(float zNear, float zFar, float width, float height, float fov);
-    
-    //  -> Camera*
-    // Returns a pointer to the Transforms camera.
-    // Example: myTransform.getCameraTransformPtr();
-    // Strategy: Domain Knowledge
-    Camera* getCameraTransformPtr();
-    
-    // Camera* -> void
-    // EFFECT: Given a pointer to a camera set this transforms camera pointer to
-    // it's attributes.
-    // Example: myTransform->setCameraTransform(myCameraPtr);
-    // Domain Knowledge
-    void setCameraTransform(Camera* cameraPtr);
+    void setProjection(float zNear,
+                       float zFar,
+                       float width,
+                       float height,
+                       float fov);
     
 private:
     
@@ -148,8 +139,6 @@ private:
     float height;
     // degrees
     float fov;
-    
-    Camera tCamera;
     
     Vector3f* rotation;
     Vector3f* scale;

@@ -27,18 +27,47 @@ InputManager& InputManager::getInstance() {
 
 bool InputManager::onKeyUp(int key) {
     
-    if (key == GLFW_KEY_UP) {
-        std::cout << "We've just released up!" << std::endl;
-    }
-    
     return true;
 }
 
 
 bool InputManager::onKeyDown(int key) {
 
-    if (key == GLFW_KEY_UP) {
-        std::cout << "We've just pressed up!" << std::endl;
+    switch (key) {
+        case GLFW_KEY_UP:
+        case GLFW_KEY_DOWN:
+        case GLFW_KEY_LEFT:
+        case GLFW_KEY_RIGHT:
+        case GLFW_KEY_W:
+        case GLFW_KEY_A:
+        case GLFW_KEY_S:
+        case GLFW_KEY_D:
+            theCamera.inputCamera(key);
+            break;
+            
+        default:
+            break;
+    }
+    
+    return true;
+}
+
+bool InputManager::onKeyRepeat(int key) {
+    
+    switch (key) {
+        case GLFW_KEY_UP:
+        case GLFW_KEY_DOWN:
+        case GLFW_KEY_LEFT:
+        case GLFW_KEY_RIGHT:
+        case GLFW_KEY_W:
+        case GLFW_KEY_A:
+        case GLFW_KEY_S:
+        case GLFW_KEY_D:
+            theCamera.inputCamera(key);
+            break;
+            
+        default:
+            break;
     }
     
     return true;

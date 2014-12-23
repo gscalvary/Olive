@@ -80,8 +80,15 @@ void Quaternion::conjugateQuaternion() {
 
 void Quaternion::multQuaternion(Quaternion otherQuaternion) {
     
-    w = w * otherQuaternion.getWQuaternion() - x * otherQuaternion.getXQuaternion() - y * otherQuaternion.getYQuaternion() - z * otherQuaternion.getZQuaternion();
-    x = x * otherQuaternion.getWQuaternion() + w * otherQuaternion.getXQuaternion() + y * otherQuaternion.getZQuaternion() - z * otherQuaternion.getYQuaternion();
-    y = y * otherQuaternion.getWQuaternion() + w * otherQuaternion.getYQuaternion() + z * otherQuaternion.getXQuaternion() - x * otherQuaternion.getZQuaternion();
-    z = z * otherQuaternion.getWQuaternion() + w * otherQuaternion.getZQuaternion() + x * otherQuaternion.getYQuaternion() - y * otherQuaternion.getXQuaternion();
+    // use the original values in the below computation or the computation's
+    // later equations will use the result of the earlier equations
+    float xO = x;
+    float yO = y;
+    float zO = z;
+    float wO = w;
+    
+    w = wO * otherQuaternion.getWQuaternion() - xO * otherQuaternion.getXQuaternion() - yO * otherQuaternion.getYQuaternion() - zO * otherQuaternion.getZQuaternion();
+    x = xO * otherQuaternion.getWQuaternion() + wO * otherQuaternion.getXQuaternion() + yO * otherQuaternion.getZQuaternion() - zO * otherQuaternion.getYQuaternion();
+    y = yO * otherQuaternion.getWQuaternion() + wO * otherQuaternion.getYQuaternion() + zO * otherQuaternion.getXQuaternion() - xO * otherQuaternion.getZQuaternion();
+    z = zO * otherQuaternion.getWQuaternion() + wO * otherQuaternion.getZQuaternion() + xO * otherQuaternion.getYQuaternion() - yO * otherQuaternion.getXQuaternion();
 }

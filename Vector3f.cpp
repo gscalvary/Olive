@@ -75,20 +75,34 @@ float Vector3f::dotProductVector3f(Vector3f otherVector) {
 
 void Vector3f::crossProductVector3f(Vector3f otherVector) {
     
-    x = y * otherVector.getVector3fZ() - z * otherVector.getVector3fY();
-    y = z * otherVector.getVector3fX() - x * otherVector.getVector3fZ();
-    z = x * otherVector.getVector3fY() - y * otherVector.getVector3fX();
+    // use the original values in the below computation or the computation's
+    // later equations will use the result of the earlier equations
+    float xO = x;
+    float yO = y;
+    float zO = z;
+    
+    x = yO * otherVector.getVector3fZ() - zO * otherVector.getVector3fY();
+    y = zO * otherVector.getVector3fX() - xO * otherVector.getVector3fZ();
+    z = xO * otherVector.getVector3fY() - yO * otherVector.getVector3fX();
 }
 
 void Vector3f::normalizeVector3f() {
     
     float length = lengthVector3f();
+    
+    if (length == 0.0f) {
+        return;
+    }
+    
     x /= length;
     y /= length;
     z /= length;
 }
 
 void Vector3f::rotateVector3f(float angle, Vector3f axis) {
+    
+    // convert angle to radians
+    angle = (float)(angle * piD / 180.0f);
     
     float sinHalfAngle = sin(angle / 2.0f);
     float cosHalfAngle = cos(angle / 2.0f);
@@ -103,70 +117,79 @@ void Vector3f::rotateVector3f(float angle, Vector3f axis) {
     conjugate.conjugateQuaternion();
     Quaternion vector(axis.getVector3fX(),
                       axis.getVector3fY(),
-                      axis.getVector3fZ(), 0.0f);
+                      axis.getVector3fZ(),
+                      0.0f);
     
-    rotation.multQuaternion(vector);
     rotation.multQuaternion(conjugate);
+    rotation.multQuaternion(vector);
     
     x = rotation.getXQuaternion();
     y = rotation.getYQuaternion();
     z = rotation.getZQuaternion();
 }
 
-Vector3f Vector3f::addVector3f(Vector3f otherVector) {
+void Vector3f::addVector3f(Vector3f otherVector) {
     
-    return *new Vector3f(x + otherVector.getVector3fX(),
-                         y + otherVector.getVector3fY(),
-                         z + otherVector.getVector3fZ());
+    x += otherVector.getVector3fX();
+    y += otherVector.getVector3fY();
+    z += otherVector.getVector3fZ();
 }
 
-Vector3f Vector3f::addVector3f(float scalar) {
+void Vector3f::addVector3f(float scalar) {
     
-    return *new Vector3f(x + scalar, y + scalar, z + scalar);
+    x += scalar;
+    y += scalar;
+    z += scalar;
 }
 
-Vector3f Vector3f::subVector3f(Vector3f otherVector) {
+void Vector3f::subVector3f(Vector3f otherVector) {
     
-    return *new Vector3f(x - otherVector.getVector3fX(),
-                         y - otherVector.getVector3fY(),
-                         z - otherVector.getVector3fZ());
+    x -= otherVector.getVector3fX();
+    y -= otherVector.getVector3fY();
+    z -= otherVector.getVector3fZ();
 }
 
-Vector3f Vector3f::subVector3f(float scalar) {
+void Vector3f::subVector3f(float scalar) {
     
-    return *new Vector3f(x - scalar, y - scalar, z - scalar);
+    x -= scalar;
+    y -= scalar;
+    z -= scalar;
 }
 
-Vector3f Vector3f::multVector3f(Vector3f otherVector) {
+void Vector3f::multVector3f(Vector3f otherVector) {
     
-    return *new Vector3f(x * otherVector.getVector3fX(),
-                         y * otherVector.getVector3fY(),
-                         z * otherVector.getVector3fZ());
+    x *= otherVector.getVector3fX();
+    y *= otherVector.getVector3fY();
+    z *= otherVector.getVector3fZ();
 }
 
-Vector3f Vector3f::multVector3f(float scalar) {
+void Vector3f::multVector3f(float scalar) {
     
-    return *new Vector3f(x * scalar, y * scalar, z * scalar);
+    x *= scalar;
+    y *= scalar;
+    z *= scalar;
 }
 
-Vector3f Vector3f::divVector3f(Vector3f otherVector) {
+void Vector3f::divVector3f(Vector3f otherVector) {
     
     if (otherVector.getVector3fX() == 0.0 ||
         otherVector.getVector3fY() == 0.0 ||
         otherVector.getVector3fZ() == 0.0) {
-        return *this;
+        return;
     } else {
-        return *new Vector3f(x / otherVector.getVector3fX(),
-                             y / otherVector.getVector3fY(),
-                             z / otherVector.getVector3fZ());
+        x /= otherVector.getVector3fX();
+        y /= otherVector.getVector3fY();
+        z /= otherVector.getVector3fZ();
     }
 }
 
-Vector3f Vector3f::divVector3f(float scalar) {
+void Vector3f::divVector3f(float scalar) {
     
     if (scalar == 0.0) {
-        return *this;
+        return;
     } else {
-        return *new Vector3f(x / scalar, y / scalar, z / scalar);
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
     }
 }

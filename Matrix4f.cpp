@@ -142,10 +142,10 @@ void Matrix4f::setCameraMatrix4f(Vector3f* forward, Vector3f* up) {
     Vector3f r(up->getVector3fX(), up->getVector3fY(), up->getVector3fZ());
     r.normalizeVector3f();
     r.crossProductVector3f(f);
-    
+
     Vector3f u(f.getVector3fX(), f.getVector3fY(), f.getVector3fZ());
     u.crossProductVector3f(r);
-    
+
     m[0][0] = r.getVector3fX(); m[0][1] = r.getVector3fY(); m[0][2] = r.getVector3fZ(); m[0][3] = 0.0f;
     m[1][0] = u.getVector3fX(); m[1][1] = u.getVector3fY(); m[1][2] = u.getVector3fZ(); m[1][3] = 0.0f;
     m[2][0] = f.getVector3fX(); m[2][1] = f.getVector3fY(); m[2][2] = f.getVector3fZ(); m[2][3] = 0.0f;

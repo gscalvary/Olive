@@ -119,13 +119,13 @@ Matrix4f* Transform::getProjectedTransformationPtr() {
     projectionMatrix->setProjectionMatrix4f(zNear, zFar, width, height, fov);
     
     // set the camera rotation matrix using the camera's current orientation
-    cameraRotationMatrix->setCameraMatrix4f(tCamera.getForwardCamera(),
-                                            tCamera.getUpCamera());
+    cameraRotationMatrix->setCameraMatrix4f(theCamera.getForwardCamera(),
+                                            theCamera.getUpCamera());
     
     // set the camera translation matrix using the camera's current position
-    cameraTranslationMatrix->setTranslationMatrix4f(-tCamera.getPosCamera()->getVector3fX(),
-                                                    -tCamera.getPosCamera()->getVector3fY(),
-                                                    -tCamera.getPosCamera()->getVector3fZ());
+    cameraTranslationMatrix->setTranslationMatrix4f(-theCamera.getPosCamera()->getVector3fX(),
+                                                    -theCamera.getPosCamera()->getVector3fY(),
+                                                    -theCamera.getPosCamera()->getVector3fZ());
     
     // multiply the camera translation matrix by the transformation matrix
     // storing the result in the camera translation matrix
@@ -150,14 +150,4 @@ void Transform::setProjection(float zNear, float zFar, float width,
     this->width = width;
     this->height = height;
     this->fov = fov;
-}
-
-Camera* Transform::getCameraTransformPtr() {
-    
-    return &tCamera;
-}
-
-void Transform::setCameraTransform(Camera* cameraPtr) {
-    
-    
 }

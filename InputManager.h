@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <GLFW/glfw3.h>
+#include "Camera.h"
 #include "Vector2f.h"
 
 #endif /* defined(__Olive__InputManager__) */
@@ -47,6 +48,12 @@ public:
     // Example: onKeyDown(GLFW_KEY_6);
     // Strategy: Function Composition
     bool onKeyDown(int key);
+    
+    // int -> bool
+    // Process keys that are being held down.
+    // Example: onKeyRepeat(GLFW_KEY_6);
+    // Strategy: Function Composition
+    bool onKeyRepeat(int key);
     
     // int -> bool
     // Process mouse buttons that have just been released.

@@ -92,77 +92,77 @@ public:
     // Strategy: Function Composition
     void rotateVector2f(float angle);
     
-    // Vector2f -> Vector2f
-    // Adds this vector to the passed in vector and allocates the result as a
-    // new vector.
+    // Vector2f -> void
+    // EFFECT: Adds this vector to the passed in vector and stores the result in
+    // this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->addVector2f((1.0, 1.0)) returns new object vector2f
+    //          myVector->addVector2f((1.0, 1.0)) sets myVector to:
     //          (3.0, 1.0);
     // Strategy: Function Composition
-    Vector2f addVector2f(Vector2f otherVector);
+    void addVector2f(Vector2f otherVector);
     
-    // float -> Vector2f
-    // Adds the passed in float to all coordinates of this vector and allocates
-    // the result as a new vector.
+    // float -> void
+    // EFFECT: Adds the passed in float to all coordinates of this vector and
+    // stores the result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->addVector2f(2.0) returns new object vector2f
+    //          myVector->addVector2f(2.0) sets myVector to:
     //          (4.0, 2.0);
     // Strategy: Function Composition
-    Vector2f addVector2f(float scalar);
+    void addVector2f(float scalar);
     
-    // Vector2f -> Vector2f
-    // Subtracts this vector from the passed in vector and allocates the result
-    // as a new vector.
+    // Vector2f -> void
+    // EFFECT: Subtracts this vector from the passed in vector and stores the
+    // result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->subVector2f((1.0,  1.0)) returns new object vector2f
+    //          myVector->subVector2f((1.0,  1.0)) sets myVector to:
     //          (1.0, -1.0);
     // Strategy: Function Composition
-    Vector2f subVector2f(Vector2f otherVector);
+    void subVector2f(Vector2f otherVector);
     
-    // float -> Vector2f
-    // Subtracts the passed in float from all coordinates of this vector and
-    // allocates the result as a new vector.
+    // float -> void
+    // EFFECT: Subtracts the passed in float from all coordinates of this vector
+    // and stores the result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->subVector2f(2.0) returns new object vector2f
+    //          myVector->subVector2f(2.0) sets myVector to:
     //          (0.0, -2.0);
     // Strategy: Function Composition
-    Vector2f subVector2f(float scalar);
+    void subVector2f(float scalar);
     
-    // Vector2f -> Vector2f
-    // Multiplies this vector by the passed in vector and allocates the result
-    // as a new vector.
+    // Vector2f -> void
+    // EFFECT: Multiplies this vector by the passed in vector and stores the
+    // result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->multVector2f((2.0,  1.0)) returns new object vector2f
+    //          myVector->multVector2f((2.0,  1.0)) sets myVector to:
     //          (4.0, 0.0);
     // Strategy: Function Composition
-    Vector2f multVector2f(Vector2f otherVector);
+    void multVector2f(Vector2f otherVector);
     
-    // float -> Vector2f
-    // Multiplies the passed in float by all coordinates of this vector and
-    // allocates the result as a new vector.
+    // float -> void
+    // EFFECT: Multiplies the passed in float by all coordinates of this vector
+    // and stores the result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->multVector2f(2.0) returns new object vector2f
+    //          myVector->multVector2f(2.0) sets myVector to:
     //          (4.0, 0.0);
     // Strategy: Function Composition
-    Vector2f multVector2f(float scalar);
+    void multVector2f(float scalar);
     
-    // Vector2f -> Vector2f
-    // Divides this vector by the passed in vector and allocates the result as a
-    // new vector.
+    // Vector2f -> void
+    // EFFECT: Divides this vector by the passed in vector and stores the result
+    // in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->divVector2f((2.0,  1.0)) returns new object vector2f
+    //          myVector->divVector2f((2.0,  1.0)) sets myVector to:
     //          (1.0, 1.0);
     // Strategy: Function Composition
-    Vector2f divVector2f(Vector2f otherVector);
+    void divVector2f(Vector2f otherVector);
     
-    // float -> Vector2f
-    // Divides the passed in float by all coordinates of this vector and
-    // allocates the result as a new vector.
+    // float -> void
+    // EFFECT: Divides the passed in float by all coordinates of this vector and
+    // stores the result in this vector.
     // Example: Vector2f myVector(2.0, 0.0)
-    //          myVector->addVector2f(2.0) returns new object vector2f
+    //          myVector->addVector2f(2.0) sets myVector to:
     //          (1.0, 0.0);
     // Strategy: Function Composition
-    Vector2f divVector2f(float scalar);
+    void divVector2f(float scalar);
     
 private:
     

@@ -9,10 +9,15 @@
 #ifndef __Olive__Camera__
 #define __Olive__Camera__
 
+#include <iostream>
 #include <stdio.h>
+#include <GLFW/glfw3.h>
 #include "Vector3f.h"
 
 #endif /* defined(__Olive__Camera__) */
+
+// singleton shortcut
+#define theCamera Camera::getInstance()
 
 class Camera {
 public:
@@ -32,6 +37,13 @@ public:
     //                                    Vector3f(0.0f, 1.0f, 0.0f)
     // Function Composition
     Camera(Vector3f pos, Vector3f forward, Vector3f up);
+    
+    //  -> Camera&
+    // Used to access the singleton instance of this class, by using theCamera
+    // a macro will call this function which returns the address of this object.
+    // Example: theCamera.someCameraMethod
+    // Strategy: Domain Knowledge
+    static Camera& getInstance();
     
     //  -> Vector3f*
     // Return a pointer to the pos of the Camera.
@@ -108,12 +120,22 @@ public:
     // Strategy: Function Composition
     void rotateHorzCamera(float angleDegrees);
     
+    // int -> void
+    // EFFECT: Given a key affect a change to the camera attributes.
+    // Example: theCamera.inputCamera(GL_KEY_W); moves the camera forward
+    // Strategy: Function Composition
+    void inputCamera(int key);
+    
+protected:
+    
+    static Camera* s_Camera;
+    
 private:
     
-    Vector3f yAxis;
     Vector3f pos;
     Vector3f forward;
     Vector3f up;
     Vector3f left;
     Vector3f right;
+    Vector3f yAxis;
 };

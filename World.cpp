@@ -95,7 +95,8 @@ int World::initializeWorld() {
                                 (float)mainWindow->getWindowWidth(),
                                 (float)mainWindow->getWindowHeight(),
                                 70.0f);
-    testTransform.setCameraTransform(&testCamera);
+    Vector3f newPos(0.0f, 0.0f, -25.0f);
+    theCamera.setPosCamera(&newPos);
     
     return 0;
 }
@@ -188,13 +189,16 @@ void World::updateWorld() {
     
     //TODO: REMOVE THIS TEST CODE!
     testUniform += gameClock->getDeltaTime();
-    testTransform.setTranslation(0.0f, 0.0f, 10.0f);
-    testTransform.setRotation(sin(testUniform) * 180.0f,
+    testTransform.setTranslation(0.0f, 0.0f, 0.0f);
+    testTransform.setRotation(0.0f,
                               sin(testUniform) * 180.0f,
                               0.0f);
+    
+    /*
     testTransform.setScale(sin(testUniform),
                            sin(testUniform),
                            sin(testUniform));
+     */
 }
 
 void World::stopWorld() {
@@ -216,4 +220,9 @@ int World::shutdownWorld() {
 void World::errorCallback(int error, const char* description) {
     
     std::cout << description << std::endl;
+}
+
+Time* World::getGameClockPtr() {
+    
+    return gameClock;
 }

@@ -22,6 +22,12 @@ void keyboardInput(GLFWwindow* window, int key, int scancode, int action,
             return;
         }
     }
+    
+    if (action == GLFW_REPEAT) {
+        if (theInput.onKeyRepeat(key)) {
+            return;
+        }
+    }
 }
 
 void mouseButtonInput(GLFWwindow* window, int button, int action, int mods) {

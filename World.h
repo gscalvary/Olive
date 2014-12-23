@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <vector>
 #include <GLFW/glfw3.h>
+#include "Camera.h"
 #include "Input.h"
 #include "InputManager.h"
 #include "Mesh.h"
@@ -82,6 +83,12 @@ public:
     // Strategy: Function Composition
     static void errorCallback(int error, const char* description);
     
+    //  -> Time*
+    // Returns a pointer to the World's gameClock.
+    // Example: theWorld.getGameClockPtr();
+    // Strategy: Domain Knowledge
+    Time* getGameClockPtr();
+    
 protected:
     
     static World* s_World;
@@ -121,7 +128,6 @@ private:
     const float frameCap = 100.0;
     
     // TODO: delete this test code!
-    Camera testCamera;
     Mesh testMesh;
     Shader* testShader;
     Transform testTransform;

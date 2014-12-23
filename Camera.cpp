@@ -8,6 +8,8 @@
 
 #include "Camera.h"
 
+Camera* Camera::s_Camera = NULL;
+
 Camera::Camera() {
     
     pos.setVector3fX(0.0f);
@@ -46,6 +48,16 @@ Camera::Camera(Vector3f pos, Vector3f forward, Vector3f up) {
     yAxis.setVector3fX(0.0f);
     yAxis.setVector3fY(1.0f);
     yAxis.setVector3fZ(0.0f);
+}
+
+Camera& Camera::getInstance() {
+    
+    // allocate the Camera if not already done
+    if (s_Camera == NULL) {
+        s_Camera = new Camera();
+    }
+    
+    return *s_Camera;
 }
 
 Vector3f* Camera::getPosCamera() {
@@ -157,4 +169,56 @@ void Camera::rotateHorzCamera(float angleDegrees) {
     up.setVector3fZ(forward.getVector3fZ());
     up.crossProductVector3f(hAxis);
     up.normalizeVector3f();
+}
+
+void Camera::inputCamera(int key) {
+    
+    float movAmt = 1.0f;
+    float rotAmt = 45.0f;
+    
+    if (key == GLFW_KEY_W) {
+        Vector3f f(forward.getVector3fX(),
+                   forward.getVector3fY(),
+                   forward.getVector3fZ());
+        moveCamera(f, movAmt);
+    }
+    
+    if (key == GLFW_KEY_S) {
+        Vector3f f(forward.getVector3fX(),
+                   forward.getVector3fY(),
+                   forward.getVector3fZ());
+        moveCamera(f, -movAmt);
+    }
+    
+    if (key == GLFW_KEY_A) {
+        Vector3f f(getLeftCamera()->getVector3fX(),
+                   getLeftCamera()->getVector3fY(),
+                   getLeftCamera()->getVector3fZ());
+        moveCamera(f, movAmt);
+    }
+    
+    if (key == GLFW_KEY_D) {
+        Vector3f f(getRightCamera()->getVector3fX(),
+                   getRightCamera()->getVector3fY(),
+                   getRightCamera()->getVector3fZ());
+        moveCamera(f, movAmt);
+    }
+    
+    if (key == GLFW_KEY_UP) {
+        rotateVertCamera(-rotAmt);
+    }
+    
+    if (key == GLFW_KEY_DOWN) {
+        rotateVertCamera(rotAmt);
+    }
+    
+    if (key == GLFW_KEY_LEFT) {
+        rotateHorzCamera(-rotAmt);
+    }
+    
+    if (key == GLFW_KEY_RIGHT) {
+        rotateHorzCamera(rotAmt);
+    }
+    std::cout << "pos: " << pos.reportVector3f() << std::endl;
+    std::cout << "forward: " << forward.reportVector3f() << std::endl;
 }

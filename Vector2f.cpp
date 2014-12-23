@@ -62,6 +62,11 @@ float Vector2f::dotProductVector2f(Vector2f otherVector) {
 void Vector2f::normalizeVector2f() {
     
     float length = lengthVector2f();
+    
+    if (length == 0.0f) {
+        return;
+    }
+    
     x /= length;
     y /= length;
 }
@@ -76,55 +81,57 @@ void Vector2f::rotateVector2f(float angle) {
     y = (float)(x * sinRad + y * cosRad);
 }
 
-Vector2f Vector2f::addVector2f(Vector2f otherVector) {
+void Vector2f::addVector2f(Vector2f otherVector) {
     
-    return *new Vector2f(x + otherVector.getVector2fX(),
-                         y + otherVector.getVector2fY());
+    x += otherVector.getVector2fX();
+    y += otherVector.getVector2fY();
 }
 
-Vector2f Vector2f::addVector2f(float scalar) {
+void Vector2f::addVector2f(float scalar) {
     
-    return *new Vector2f(x + scalar, y + scalar);
+    x += scalar;
+    y += scalar;
 }
 
-Vector2f Vector2f::subVector2f(Vector2f otherVector) {
+void Vector2f::subVector2f(Vector2f otherVector) {
     
-    return *new Vector2f(x - otherVector.getVector2fX(),
-                         y - otherVector.getVector2fY());
+    x -= otherVector.getVector2fX();
+    y -= otherVector.getVector2fY();
 }
 
-Vector2f Vector2f::subVector2f(float scalar) {
+void Vector2f::subVector2f(float scalar) {
     
-    return *new Vector2f(x - scalar, y - scalar);
+    x -= scalar;
+    y -= scalar;
 }
 
-Vector2f Vector2f::multVector2f(Vector2f otherVector) {
+void Vector2f::multVector2f(Vector2f otherVector) {
     
-    return *new Vector2f(x * otherVector.getVector2fX(),
-                         y * otherVector.getVector2fY());
+    x *= otherVector.getVector2fX();
+    y *= otherVector.getVector2fY();
 }
 
-Vector2f Vector2f::multVector2f(float scalar) {
+void Vector2f::multVector2f(float scalar) {
     
-    return *new Vector2f(x * scalar, y * scalar);
+    x *= scalar;
+    y *= scalar;
 }
 
-Vector2f Vector2f::divVector2f(Vector2f otherVector) {
+void Vector2f::divVector2f(Vector2f otherVector) {
     
     if (otherVector.getVector2fX() == 0.0 ||
         otherVector.getVector2fY() == 0.0) {
-        return *this;
+        return;
     } else {
-        return *new Vector2f(x / otherVector.getVector2fX(),
-                             y / otherVector.getVector2fY());
+        x /= otherVector.getVector2fX();
+        y /= otherVector.getVector2fY();
     }
 }
 
-Vector2f Vector2f::divVector2f(float scalar) {
+void Vector2f::divVector2f(float scalar) {
     
-    if (scalar == 0.0) {
-        return *this;
-    } else {
-        return *new Vector2f(x / scalar, y / scalar);
+    if (scalar != 0.0) {
+        x /= scalar;
+        y /= scalar;
     }
 }
