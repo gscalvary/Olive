@@ -10,6 +10,7 @@
 #define __Olive__Transform__
 
 #include <stdio.h>
+#include "Camera.h"
 #include "Matrix4f.h"
 #include "Vector3f.h"
 
@@ -135,9 +136,13 @@ private:
     // degrees
     float fov;
     
+    Camera tCamera;
+    
     Vector3f* rotation;
     Vector3f* scale;
     Vector3f* translation;
+    
+    Matrix4f* cameraMatrix;
     Matrix4f* projectionMatrix;
     Matrix4f* rotationMatrix;
     Matrix4f* scaleMatrix;

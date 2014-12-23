@@ -90,7 +90,27 @@ void Vector3f::normalizeVector3f() {
 
 void Vector3f::rotateVector3f(float angle, Vector3f axis) {
     
+    float sinHalfAngle = sin(angle / 2.0f);
+    float cosHalfAngle = cos(angle / 2.0f);
     
+    float rX = axis.getVector3fX() * sinHalfAngle;
+    float rY = axis.getVector3fY() * sinHalfAngle;
+    float rZ = axis.getVector3fZ() * sinHalfAngle;
+    float rW = cosHalfAngle;
+    
+    Quaternion rotation(rX, rY, rZ, rW);
+    Quaternion conjugate(rX, rY, rZ, rW);
+    conjugate.conjugateQuaternion();
+    Quaternion vector(axis.getVector3fX(),
+                      axis.getVector3fY(),
+                      axis.getVector3fZ(), 0.0f);
+    
+    rotation.multQuaternion(vector);
+    rotation.multQuaternion(conjugate);
+    
+    x = rotation.getXQuaternion();
+    y = rotation.getYQuaternion();
+    z = rotation.getZQuaternion();
 }
 
 Vector3f Vector3f::addVector3f(Vector3f otherVector) {

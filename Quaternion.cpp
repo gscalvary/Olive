@@ -70,27 +70,18 @@ void Quaternion::normalizeQuaternion() {
     w /= length;
 }
 
-Quaternion Quaternion::conjugateQuaternion() {
+void Quaternion::conjugateQuaternion() {
     
-    return *new Quaternion(-x, -y, -z, w);
+    x = -x;
+    y = -y;
+    z = -z;
+    w = -w;
 }
 
-Quaternion Quaternion::multQuaternion(Quaternion otherQuaternion) {
+void Quaternion::multQuaternion(Quaternion otherQuaternion) {
     
-    float newW = w * otherQuaternion.getWQuaternion() - x * otherQuaternion.getXQuaternion() - y * otherQuaternion.getYQuaternion() - z * otherQuaternion.getZQuaternion();
-    float newX = x * otherQuaternion.getWQuaternion() + w * otherQuaternion.getXQuaternion() + y * otherQuaternion.getZQuaternion() - z * otherQuaternion.getYQuaternion();
-    float newY = y * otherQuaternion.getWQuaternion() + w * otherQuaternion.getYQuaternion() + z * otherQuaternion.getXQuaternion() - x * otherQuaternion.getZQuaternion();
-    float newZ = z * otherQuaternion.getWQuaternion() + w * otherQuaternion.getZQuaternion() + x * otherQuaternion.getYQuaternion() - y * otherQuaternion.getXQuaternion();
-    
-    return *new Quaternion(newX, newY, newZ, newW);
-}
-
-Quaternion Quaternion::multQuaternion(Vector3f vector) {
-    
-    float newW = -x * vector.getVector3fX() - y * vector.getVector3fY() - z * vector.getVector3fZ();
-    float newX =  w * vector.getVector3fX() + y * vector.getVector3fZ() - z * vector.getVector3fY();
-    float newY =  w * vector.getVector3fY() + z * vector.getVector3fX() - x * vector.getVector3fZ();
-    float newZ =  w * vector.getVector3fZ() + x * vector.getVector3fY() - y * vector.getVector3fX();
-    
-    return *new Quaternion(newX, newY, newZ, newW);
+    w = w * otherQuaternion.getWQuaternion() - x * otherQuaternion.getXQuaternion() - y * otherQuaternion.getYQuaternion() - z * otherQuaternion.getZQuaternion();
+    x = x * otherQuaternion.getWQuaternion() + w * otherQuaternion.getXQuaternion() + y * otherQuaternion.getZQuaternion() - z * otherQuaternion.getYQuaternion();
+    y = y * otherQuaternion.getWQuaternion() + w * otherQuaternion.getYQuaternion() + z * otherQuaternion.getXQuaternion() - x * otherQuaternion.getZQuaternion();
+    z = z * otherQuaternion.getWQuaternion() + w * otherQuaternion.getZQuaternion() + x * otherQuaternion.getYQuaternion() - y * otherQuaternion.getXQuaternion();
 }

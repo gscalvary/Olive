@@ -10,10 +10,7 @@
 #define __Olive__Quaternion__
 
 #include <cmath>
-#include <sstream>
 #include <stdio.h>
-#include <string>
-#include "Vector3f.h"
 
 #endif /* defined(__Olive__Quaternion__) */
 
@@ -90,31 +87,22 @@ public:
     // Strategy: Function Composition
     void normalizeQuaternion();
     
-    //  -> Quaternion
-    // Return a new Quaternion object that is the conjugate of this one.
+    //  -> void
+    // EFFECT: Conjugate this Quaternion object.
     // Example: Quaternion myQuaternion(2.0, 1.0, 2.0, 1.0)
-    //          myQuaternion->conjugateQuaternion() returns
+    //          myQuaternion->conjugateQuaternion() sets myQuaternion to
     //          (-2.0, -1.0, -2.0, 1.0);
     // Strategy: Domain Knowledge
-    Quaternion conjugateQuaternion();
+    void conjugateQuaternion();
     
-    // Quaternon -> Quaternion
-    // Given a Quaternion multiply it with this Quaternion and return a new
-    // Quaternion object as a result.
-    // Example: Quaternion myQuaternion(2.0, 1.0, 2.0, 1.0)
-    //          myQuaternion->multQuaternion(0.0, 0.0, 0.0, 0.0) returns
+    // Quaternon -> void
+    // Given a Quaternion multiply it with this Quaternion and store the result
+    // in this Quaternion object.
+    // Example: Quaternion myQuat(2.0, 1.0, 2.0, 1.0)
+    //          myQuat->multQuaternion(0.0, 0.0, 0.0, 0.0) set myQuat to
     //          (0.0, 0.0, 0.0, 0.0);
     // Strategy: Function Composition
-    Quaternion multQuaternion(Quaternion otherQuaternion);
-    
-    // Vector3f -> Quaternion
-    // Given a Vector3f multiply it with this Quaternion and return a new
-    // Quaternion object as a result.
-    // Example: Quaternion myQuaternion(2.0, 1.0, 2.0, 1.0)
-    //          myQuaternion->multQuaternion(0.0, 0.0, 0.0) returns
-    //          (0.0, 0.0, 0.0, 0.0);
-    // Strategy: Function Composition
-    Quaternion multQuaternion(Vector3f vector);
+    void multQuaternion(Quaternion otherQuaternion);
     
 private:
     
@@ -122,5 +110,4 @@ private:
     float y;
     float z;
     float w;
-    
 };

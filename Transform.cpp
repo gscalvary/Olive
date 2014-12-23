@@ -13,6 +13,7 @@ Transform::Transform() {
     rotation = new Vector3f();
     scale = new Vector3f(1.0f, 1.0f, 1.0f);
     translation = new Vector3f();
+    cameraMatrix = new Matrix4f();
     projectionMatrix = new Matrix4f();
     rotationMatrix = new Matrix4f();
     scaleMatrix = new Matrix4f();
@@ -24,6 +25,7 @@ Transform::~Transform() {
     delete rotation;
     delete scale;
     delete translation;
+    delete cameraMatrix;
     delete projectionMatrix;
     delete rotationMatrix;
     delete scaleMatrix;

@@ -11,6 +11,7 @@
 
 #include <cmath>
 #include <stdio.h>
+#include "Vector3f.h"
 
 #endif /* defined(__Olive__Matrix4f__) */
 
@@ -95,6 +96,13 @@ public:
     // Strategy: Function Composition
     void setProjectionMatrix4f(float zNear, float zFar, float width,
                                float height, float fov);
+    
+    // Vector3f, Vector3f -> void
+    // EFFECT: Modify the matrix components according to the given forward and
+    // up vectors.
+    // Example: setScaleMatrix4f(forward, up);
+    // Strategy: Function Composition
+    void setCameraMatrix4f(Vector3f forward, Vector3f up);
     
     // Matrix4f* -> void
     // EFFECT: Given a pointer to a matrix multiply it by this matrix.

@@ -13,6 +13,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <string>
+#include "Quaternion.h"
 
 #endif /* defined(__Olive__Vector3f__) */
 
