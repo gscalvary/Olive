@@ -95,6 +95,7 @@ int World::initializeWorld() {
                                 (float)mainWindow->getWindowWidth(),
                                 (float)mainWindow->getWindowHeight(),
                                 70.0f);
+    testTransform.setCameraTransform(&testCamera);
     
     return 0;
 }

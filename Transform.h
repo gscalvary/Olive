@@ -127,6 +127,19 @@ public:
     // Strategy: Domain Knowledge
     void setProjection(float zNear, float zFar, float width, float height, float fov);
     
+    //  -> Camera*
+    // Returns a pointer to the Transforms camera.
+    // Example: myTransform.getCameraTransformPtr();
+    // Strategy: Domain Knowledge
+    Camera* getCameraTransformPtr();
+    
+    // Camera* -> void
+    // EFFECT: Given a pointer to a camera set this transforms camera pointer to
+    // it's attributes.
+    // Example: myTransform->setCameraTransform(myCameraPtr);
+    // Domain Knowledge
+    void setCameraTransform(Camera* cameraPtr);
+    
 private:
     
     float zNear;
@@ -142,7 +155,8 @@ private:
     Vector3f* scale;
     Vector3f* translation;
     
-    Matrix4f* cameraMatrix;
+    Matrix4f* cameraRotationMatrix;
+    Matrix4f* cameraTranslationMatrix;
     Matrix4f* projectionMatrix;
     Matrix4f* rotationMatrix;
     Matrix4f* scaleMatrix;

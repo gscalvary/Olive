@@ -132,14 +132,14 @@ void Matrix4f::setProjectionMatrix4f(float zNear, float zFar, float width,
     m[3][3] = 0.0f;
 }
 
-void Matrix4f::setCameraMatrix4f(Vector3f forward, Vector3f up) {
+void Matrix4f::setCameraMatrix4f(Vector3f* forward, Vector3f* up) {
     
-    Vector3f f(forward.getVector3fX(),
-               forward.getVector3fY(),
-               forward.getVector3fZ());
+    Vector3f f(forward->getVector3fX(),
+               forward->getVector3fY(),
+               forward->getVector3fZ());
     f.normalizeVector3f();
     
-    Vector3f r(up.getVector3fX(), up.getVector3fY(), up.getVector3fZ());
+    Vector3f r(up->getVector3fX(), up->getVector3fY(), up->getVector3fZ());
     r.normalizeVector3f();
     r.crossProductVector3f(f);
     

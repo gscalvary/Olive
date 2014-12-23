@@ -13,7 +13,9 @@ Transform::Transform() {
     rotation = new Vector3f();
     scale = new Vector3f(1.0f, 1.0f, 1.0f);
     translation = new Vector3f();
-    cameraMatrix = new Matrix4f();
+    
+    cameraRotationMatrix = new Matrix4f();
+    cameraTranslationMatrix = new Matrix4f();
     projectionMatrix = new Matrix4f();
     rotationMatrix = new Matrix4f();
     scaleMatrix = new Matrix4f();
@@ -25,7 +27,9 @@ Transform::~Transform() {
     delete rotation;
     delete scale;
     delete translation;
-    delete cameraMatrix;
+    
+    delete cameraRotationMatrix;
+    delete cameraTranslationMatrix;
     delete projectionMatrix;
     delete rotationMatrix;
     delete scaleMatrix;
@@ -111,13 +115,29 @@ Matrix4f* Transform::getProjectedTransformationPtr() {
     // first affect the transformation
     Matrix4f* transformationMatrix = getTransformationPtr();
     
-    // now set the projection matrix using the Transform's projection
-    // attributes
+    // set the projection matrix using the Transform's projection attributes
     projectionMatrix->setProjectionMatrix4f(zNear, zFar, width, height, fov);
     
-    // multiply the projection matrix by the transformation matrix storing the
+    // set the camera rotation matrix using the camera's current orientation
+    cameraRotationMatrix->setCameraMatrix4f(tCamera.getForwardCamera(),
+                                            tCamera.getUpCamera());
+    
+    // set the camera translation matrix using the camera's current position
+    cameraTranslationMatrix->setTranslationMatrix4f(-tCamera.getPosCamera()->getVector3fX(),
+                                                    -tCamera.getPosCamera()->getVector3fY(),
+                                                    -tCamera.getPosCamera()->getVector3fZ());
+    
+    // multiply the camera translation matrix by the transformation matrix
+    // storing the result in the camera translation matrix
+    cameraTranslationMatrix->multMatrix4f(transformationMatrix);
+    
+    // multiply the camera rotation matrix by the camera translation matrix
+    // storing the result in the camera rotation matrix
+    cameraRotationMatrix->multMatrix4f(cameraTranslationMatrix);
+    
+    // multiply the projection matrix by the camera rotation matrix storing the
     // result in the projection matrix
-    projectionMatrix->multMatrix4f(transformationMatrix);
+    projectionMatrix->multMatrix4f(cameraRotationMatrix);
     
     return projectionMatrix;
 }
@@ -130,4 +150,14 @@ void Transform::setProjection(float zNear, float zFar, float width,
     this->width = width;
     this->height = height;
     this->fov = fov;
+}
+
+Camera* Transform::getCameraTransformPtr() {
+    
+    return &tCamera;
+}
+
+void Transform::setCameraTransform(Camera* cameraPtr) {
+    
+    
 }

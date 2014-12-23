@@ -121,6 +121,7 @@ private:
     const float frameCap = 100.0;
     
     // TODO: delete this test code!
+    Camera testCamera;
     Mesh testMesh;
     Shader* testShader;
     Transform testTransform;

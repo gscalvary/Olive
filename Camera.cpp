@@ -86,11 +86,11 @@ void Camera::setUpCamera(Vector3f* newUp) {
 
 Vector3f* Camera::getLeftCamera() {
     
-    left.setVector3fX(up.getVector3fX());
-    left.setVector3fY(up.getVector3fY());
-    left.setVector3fZ(up.getVector3fZ());
+    left.setVector3fX(forward.getVector3fX());
+    left.setVector3fY(forward.getVector3fY());
+    left.setVector3fZ(forward.getVector3fZ());
     
-    left.crossProductVector3f(forward);
+    left.crossProductVector3f(up);
     left.normalizeVector3f();
     
     return &left;
@@ -98,11 +98,11 @@ Vector3f* Camera::getLeftCamera() {
 
 Vector3f* Camera::getRightCamera() {
     
-    right.setVector3fX(forward.getVector3fX());
-    right.setVector3fY(forward.getVector3fY());
-    right.setVector3fZ(forward.getVector3fZ());
+    right.setVector3fX(up.getVector3fX());
+    right.setVector3fY(up.getVector3fY());
+    right.setVector3fZ(up.getVector3fZ());
     
-    right.crossProductVector3f(up);
+    right.crossProductVector3f(forward);
     right.normalizeVector3f();
     
     return &right;
